@@ -8,6 +8,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Landing></Landing>}></Route>
         </Routes>
+        <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </main>
     </BrowserRouter>
   );
