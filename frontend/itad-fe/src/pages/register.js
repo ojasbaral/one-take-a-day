@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../components/header'
 import { useNavigate, Link } from 'react-router-dom'
 import Error from '../components/error'
@@ -12,8 +12,43 @@ const Register = () => {
   const [displayName, setDisplayName] = useState('')
   const [bio, setBio] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
+  const [userId, setUserId] = useState('')
+  const [valid, setValid] = useState(true)
+  const navigate = useNavigate()
 
-  function handleRegisterBtn(e){
+  useEffect(() => {
+    const result = async () => {
+        try{
+          await fetch('/auth/login', {
+              method: "POST",
+              body: JSON.stringify({
+                  username: username,
+                  password: passwordOne
+              }),
+              headers: {
+                  "Content-type": "application/json; charset=UTF-8"
+              }
+            }).then((response) => response.json()).
+            then((json) => {
+              setUserId(json._id)
+              if (json.message === "already authorized"){
+                  setValid(false)
+              }
+              //console.log(json)
+              return () => {}
+          })
+    } catch (e) {
+        return navigate('/error')
+    }
+        }
+        result()
+    }, [])
+
+    if(!valid){
+      return navigate("/home")
+    }
+
+  async function handleRegisterBtn(e){
     e.preventDefault()
     if((email === '') || (passwordOne === '') || (passwordTwo === '')){
       setErrorMsg("All fields are required")
@@ -21,25 +56,70 @@ const Register = () => {
       setErrorMsg('Email must be a real email')
     }else if((passwordOne.length < 8)){
       setErrorMsg('Password must be 8 characters')
+    }else if((passwordOne.length > 50)){
+      setErrorMsg('Password must be less than 50 characters')
     }else if(passwordOne !== passwordTwo){
       setErrorMsg('Passwords must match')
     }else{
-      setErrorMsg('')
-      setStep(2)
+      await registerStepOne()
     }
     //CHECK IF EMAIL ALREADY EXISTS
   }
 
-  function handleCompleteBtn(e){
+  async function registerStepOne(){
+    try{
+      await fetch(('/auth/register/' + email), {
+        method: "GET"
+      }).then((res) => res.json())
+      .then((json) => {
+        if(json.message === 'failure')
+          setErrorMsg('Email Already Registered')
+        else {
+          setErrorMsg('')
+          setStep(2)
+        }
+      })
+    }catch (e){
+      return navigate('/error')
+    }
+  }
+
+
+  async function handleCompleteBtn(e){
     e.preventDefault()
     if((username === '') || (displayName === '')){
       setErrorMsg("Username and Display Name are required")
     }else{
-      setErrorMsg('')
+      await registerStepTwo()
     }
+  }
 
-    //CHECK IF USERNAME EXISTS AND HANDLE SUCCESS
-
+  async function registerStepTwo(){
+    try{
+      await fetch('/auth/register', {
+        method: "POST",
+        body: JSON.stringify({
+          email: email,
+          password: passwordOne,
+          username: username, 
+          displayName: displayName, 
+          bio: bio
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then((res) => res.json())
+      .then((json) => {
+        if (json.message === "username already in use"){
+          setErrorMsg("Username already in use")
+        }else {
+          setErrorMsg('')
+          return navigate('/home')
+        }
+      })
+    }catch (e){
+      return navigate('/error')
+    }
   }
   
   if(step === 1){
@@ -84,7 +164,10 @@ const Register = () => {
           <h1 className="text-5xl">Create your account</h1>
           <div>
           <p className="mt-5 text-gray-700">Already have one? <Link to="/login" className="text-blue-700 underline">Login</Link></p>
-          <p className="mt-5 text-2xl">Step {step}</p>
+          <div className="flex justify-between items-center mt-5">
+          <p className="text-2xl">Step {step}</p>
+          <a className="text-blue-700 underline cursor-pointer" onClick={() => setStep(1)}>Back</a>
+          </div>
           <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
           <div className="mt-3">
             <div>
