@@ -38,7 +38,7 @@ function checkLoginAuth(req, res, next){
             if (err){
                 next()
             } else {
-                return res.status(409).send({ message: 'already authorized', _id: decoded.user_id})
+                return res.status(409).send({ message: 'already authorized', id: decoded.user_id})
             }
         })
     } else {
@@ -96,7 +96,7 @@ const registerStepTwo = async (req, res) => {
         const user = await pool.query("INSERT INTO account (email, password, username, display_name, bio) VALUES ($1, $2, $3, $4, $5) RETURNING *", [email.toLowerCase(), hashedPassword, username.toLowerCase(), displayName, bio])
         genJwt(user, res)
 
-        return res.send({ message: "success" })
+        return res.send({ message: "success", id: user.rows[0].user_id })
     } catch (e) {
         return res.send(e)
     }
@@ -105,12 +105,13 @@ const registerStepTwo = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { username, password } = req.body
-        const user = await pool.query("SELECT password FROM account WHERE username=$1", [username.toLowerCase()])
+        const user = await pool.query("SELECT * FROM account WHERE username=$1", [username.toLowerCase()])
         if(user.rowCount !== 0){
             const verified = await bcrypt.compare(password, user.rows[0].password)
             if(verified){
                 genJwt(user, res)
-                return res.send({ message: "success"})
+                console.log(user)
+                return res.send({ message: "success", id: user.rows[0].user_id})
             }
         }
         return res.status(401).send({ message: 'unauthorized' })

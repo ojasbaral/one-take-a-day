@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '../components/header'
 import { useNavigate, Link } from 'react-router-dom'
 import Error from '../components/error'
+import Loading from '../components/loading'
 
 const Login = () => {
   const[errorMsg, setErrorMsg] = useState('')
@@ -9,10 +10,12 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [valid, setValid] = useState(true)
   const [userId, setUserId] = useState('')
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
    useEffect(() => {
     const result = async () => {
+      //await fetch('/auth/logout').then().then()
         try{
           await fetch('/auth/login', {
               method: "POST",
@@ -25,10 +28,13 @@ const Login = () => {
               }
             }).then((response) => response.json()).
             then((json) => {
-              setUserId(json._id)
+              setUserId(json.id)
               if (json.message === "already authorized"){
                   setValid(false)
+              }else{
+                setLoading(false)
               }
+
               //console.log(json)
               return () => {}
           })
@@ -40,7 +46,7 @@ const Login = () => {
     }, [])
 
     if(!valid){
-      return navigate("/home")
+      return navigate("/home/" + userId)
     }
 
 
@@ -72,14 +78,19 @@ const Login = () => {
           setUsername('')
         }else if(json.message==="success"){
           setErrorMsg('')
-          return navigate("/home")
+          setUserId(json.id)
+          return navigate("/home/" + json.id)
         }
       })
     } catch (e) {
       return navigate('/error')
     }
   }
-
+  if(loading){
+    return <div className="flex align-center justify-center m-auto">
+      <Loading></Loading>
+    </div>
+  }
    return (
       <div>
         <div>
@@ -88,7 +99,7 @@ const Login = () => {
         <div className="mt-32 ml-32 w-auto absolute">
           <h1 className="text-5xl">Login to account</h1>
           <div>
-          <p className="mt-5 text-gray-700">Don't have one? <Link to="/register" className="text-blue-700 underline">Login</Link></p>
+          <p className="mt-5 text-gray-700">Don't have one? <Link to="/register" className="text-blue-700 underline">Register</Link></p>
           <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
           <div className="mt-3">
             <div>

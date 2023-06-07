@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from '../components/header'
 import { useNavigate, Link } from 'react-router-dom'
 import Error from '../components/error'
+import Loading from '../components/loading'
 
 const Register = () => {
   const [step, setStep] = useState(1)
@@ -14,6 +15,7 @@ const Register = () => {
   const [errorMsg, setErrorMsg] = useState('')
   const [userId, setUserId] = useState('')
   const [valid, setValid] = useState(true)
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -30,10 +32,11 @@ const Register = () => {
               }
             }).then((response) => response.json()).
             then((json) => {
-              setUserId(json._id)
+              setUserId(json.id)
               if (json.message === "already authorized"){
                   setValid(false)
               }
+              setLoading(false)
               //console.log(json)
               return () => {}
           })
@@ -45,7 +48,7 @@ const Register = () => {
     }, [])
 
     if(!valid){
-      return navigate("/home")
+      return navigate("/home/" + userId)
     }
 
   async function handleRegisterBtn(e){
@@ -114,12 +117,19 @@ const Register = () => {
           setErrorMsg("Username already in use")
         }else {
           setErrorMsg('')
-          return navigate('/home')
+          setUserId(json.id)
+          return navigate("/home/" + json.id)
         }
       })
     }catch (e){
       return navigate('/error')
     }
+  }
+
+  if(loading){
+    return <div className="flex align-center justify-center m-auto">
+      <Loading></Loading>
+    </div>
   }
   
   if(step === 1){

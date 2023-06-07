@@ -8,3 +8,11 @@ CREATE TABLE account(
     display_name VARCHAR(255),
     bio VARCHAR(150)
 );
+
+CREATE TABLE post(
+    post_id SERIAL PRIMARY KEY,
+    account_id INT NOT NULL,
+    posted DATE NOT NULL DEFAULT CURRENT_DATE,
+    content VARCHAR(255)
+    CONSTRAINT fk_account FOREIGN KEY(account_id) REFERENCES account(user_id)
+);
