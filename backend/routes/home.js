@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const postController = require('../controllers/postController')
+const likeController = require('../controllers/likeController')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
@@ -24,6 +25,17 @@ router.use((req, res, next) => {
 })
 
 router.post('/post', postController.addPost)
+
+router.get('/post/:id/:page', postController.getPost)
+
+router.delete('/post', postController.delPost)
+
+
+router.post('/like', likeController.addLike)
+
+router.delete('/like', likeController.delLike)
+
+router.get('like/:post_id/:user_id', likeController.getLike)
 
 
 module.exports = router
