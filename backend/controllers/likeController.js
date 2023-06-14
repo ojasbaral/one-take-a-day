@@ -25,7 +25,7 @@ const delLike = async (req, res) => {
 const getLike = async (req, res) => {
     try{
         const { post_id, user_id } = req.params
-        const res = await pool.query("DELETE FROM likes WHERE post_id=$1 AND account_id=$2", [post_id, user_id])
+        const res = await pool.query("SELECT * FROM likes WHERE post_id=$1 AND account_id=$2 LIMIT 1", [post_id, user_id])
         if(res.rowCount === 0){
             return res.send({message: false})
         }else{

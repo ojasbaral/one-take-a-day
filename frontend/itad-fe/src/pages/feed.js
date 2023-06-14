@@ -3,6 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import VerticalHeader from '../components/verticalHeader'
 import Error from '../components/error'
 import { refreshUserToken, checkCallback} from '../utilities/helper'
+import { AiOutlineFire, AiOutlineComment, AiOutlineDelete, AiFillFire } from "react-icons/ai"
+import Loading from '../components/loading'
+import HashtagList from '../components/hashtagList'
+import PostList from '../components/postList'
 
 /* ----------------------------------------------------------------------------- */
 /* MAKE SURE TO FETCH POSTS AFTER ADDING A POST                                                                              */
@@ -15,12 +19,72 @@ const Feed = () => {
   const [hashtags, setHashtags] = useState([])
   const [currentHashtag, setCurrentHashtag] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
+  const [page, setPage] = useState(1)
+  const [noFeed, setNoFeed] = useState(false)
+  const [posts, setPosts] = useState(null)
+  const [posted, setPosted] = useState(false)
+  const [login, setLogin] = useState(false)
+  const [currentPost, setCurrentPost] = useState(null)
+  const [liked, setLiked] = useState(false)
+  const [likeCount, setLikeCount] = useState(null)
   const { id } = useParams()
   const navigate = useNavigate()
 
   useEffect(()=> {
-    formatDate(new Date())
+    async function effect(){
+      formatDate(new Date())
+      const valid = await refreshUserToken()
+      setLogin(valid)
+      getPosts()
+      return () => {}
+    }
+    effect()
   }, [])
+
+  if (login){
+    navigate('/login')
+}
+
+  async function getPosts(){
+    try{
+      const refresh = await refreshUserToken()
+      if (refresh){
+        navigate('/login')
+      }
+      await fetch(('/post/' + id + '/' + page.toString()))
+      .then((res) => res.json())
+      .then((json) => {
+          const valid = checkCallback(json)
+          if(valid === 0){
+              if ((json.content === []) && (page === 1)){
+                setNoFeed(true)
+                setPosted(json.posted)
+              }else{
+                if(posts === null){
+                  setPosts([])
+                }
+                setPage(page + 1)
+                setPosts(posts => [...posts, ...json.content])
+                setPosted(json.posted)
+              }
+
+              if(json.posted){
+                setCurrentPost(json.current_post)
+                setLiked(json.current_liked)
+                setLikeCount(json.current_post.like_count)
+              }else{
+                setCurrentPost([])
+              }
+          }else if(valid === 1){
+              navigate('/login')
+          }
+        
+      })
+    }catch (e){
+      return navigate('/error')
+    }
+  }
+
 
   function formatDate(uDate){
     const day = uDate.getDay()
@@ -42,11 +106,40 @@ const Feed = () => {
       setNewPost('')
     }else{
     addPost()
+    window.location.reload(false)
     setNewPost('')
     setHashtags([])
-    window.location.reload(false)
     }
   }
+
+async function delPost(){
+  try{
+    const refresh = await refreshUserToken()
+      if (refresh){
+        navigate('/login')
+      }
+
+      await fetch('/post', {
+        method: "DELETE",
+        body: JSON.stringify({
+          post_id: currentPost.post_id
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then((res) => res.json())
+      .then((json) => {
+        const valid = checkCallback(json)
+        if(valid === 0){
+          setPosted(false)
+        }else if(valid === 1){
+          navigate('/login')
+        }
+      })
+  }catch (e){
+    return navigate('/error')
+  }
+}
 
 async function addPost(){
   try{
@@ -54,6 +147,7 @@ async function addPost(){
       if (refresh){
         navigate('/login')
       }
+
 
       await fetch('/post', {
           method: "POST",
@@ -67,6 +161,7 @@ async function addPost(){
           }
       }).then((res) => res.json())
       .then((json) => {
+        console.log(json)
         if(json.message === "already posted"){
           setErrorMsg('You have already posted today')
         }else{
@@ -74,15 +169,79 @@ async function addPost(){
           const valid = checkCallback(json)
 
           if(valid === 0){
-              //GET THE POSTS
+            setPosted(true)
           }else if(valid === 1){
               navigate('/login')
           }
         }
       })
   }catch(e){
-      console.log(e)
+      return navigate('/error')
   }
+  }
+
+  async function delLike(){
+    try{
+      const refresh = await refreshUserToken()
+      if (refresh){
+        navigate('/login')
+      }
+
+      await fetch("/like", {
+        method: "DELETE",
+        body: JSON.stringify({
+          post_id: currentPost.post_id,
+          user_id: id
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then((res) => res.json())
+      .then((json) => {
+        const valid = checkCallback(json)
+
+        if(valid === 0){
+          setLiked(false)
+          setLikeCount(likeCount - 1)
+        }else if(valid === 1){
+          navigate('/login')
+        }
+      })
+
+    }catch(e){
+      return navigate('/error')
+  }
+  }
+
+  async function addLike(){
+    try{
+      const refresh = await refreshUserToken()
+      if (refresh){
+        navigate('/login')
+      }
+
+      await fetch('/like', {
+        method: "POST",
+        body: JSON.stringify({
+          post_id: currentPost.post_id,
+          user_id: id
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      }).then((res) => res.json())
+      .then((json) => {
+        const valid = checkCallback(json)
+        if(valid === 0){
+          setLiked(true)
+          setLikeCount(likeCount + 1)
+        }else if(valid === 1){
+          navigate('/login')
+        }
+      })
+    }catch(e){
+      return navigate('/error')
+    }
   }
 
   function handleKeyPress(e){
@@ -117,12 +276,53 @@ async function addPost(){
     setHashtags(new_array)
   }
 
+  if((currentPost === null) || (posts === null)){
+    return <div><Loading></Loading></div>
+  }else{
+  if (posted){
+    return (
+      <div className="flex justify-between ">
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
+        <VerticalHeader></VerticalHeader>
+        <div className="mr-20 mt-4 text-3xl w-full ml-32">
+          <h1 className="text-right mb-2">{date}</h1>
+          <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
+          
+          <h1>ONLY ONE TAKE A DAY...</h1>
+          <div className="w-auto h-auto border-black border-solid border-2 mt-2 rounded">
+            <div className="flex mt-1 ml-1 mr-1 justify-between content-center">
+            <p className="text-xl float-left cursor-pointer hover:font-bold hover:text-blue-600">{currentPost.display_name}</p>
+            <p className="text-base float-right">{currentPost.posted.toString().slice(0,10)}</p>
+            </div>
+            <h6 className="text-base ml-2 -mt-1 text-gray-700">@{currentPost.username}</h6>
+            <p className="ml-2 text-base mt-1">{currentPost.content}</p>
+            <HashtagList hashtags={currentPost.hashtags}></HashtagList>
+            <div className="flex justify-left mb-2 mt-2">
+            <a className="flex ml-2"><p className="text-base mr-1">{likeCount}</p>{liked?<AiFillFire size={23} className="cursor-pointer hover:text-red-700" color="red" onClick={delLike}></AiFillFire>:<AiOutlineFire size={23} className="cursor-pointer hover:text-red-700" onClick={addLike}></AiOutlineFire>}</a>
+            <a className="flex ml-5"><p className="text-base mr-1">{currentPost.comment_count}</p><AiOutlineComment size={23} className="cursor-pointer hover:text-red-700" onClick={() => navigate('/post/' + currentPost.post_id)}></AiOutlineComment></a>
+              <a><AiOutlineDelete size={23} className="ml-5 cursor-pointer hover:text-red-700 float-right" onClick={delPost}></AiOutlineDelete></a>
+            </div>
+          </div>
+
+        <PostList content={posts} user_id={id}></PostList>
+
+        <div className="w-auto h-auto border-black border-solid border-2 mt-2 rounded mb-2">
+            <h1 className="text-center m-1">No More Posts</h1>
+          </div>
+
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex justify-between ">
+      <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
       <VerticalHeader></VerticalHeader>
       <div className="mr-20 mt-4 text-3xl w-full ml-32">
         <h1 className="text-right mb-2">{date}</h1>
         <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
+        
         <div className="w-auto h-auto border-black border-solid border-2 mt-2 rounded">
         <textarea className="w-full border-0 h-24 resize-none focus:ring-0" placeholder="ONLY ONE TAKE A DAY, MAKE IT COUNT..." value={newPost} onChange={(e) => setNewPost(e.target.value)}></textarea>
         <div className="flex">
@@ -135,9 +335,11 @@ async function addPost(){
         <button className="bg-black text-white w-1/5 h-8 rounded text-xl mr-1 mb-1 hover:bg-white hover:text-black hover:border-2 hover:border-black hover:border-solid float-right" onClick={handlePost}>POST</button>
         </div>
         </div>
+        <PostList content={posts} user_id={id}></PostList>
       </div>
     </div>
   )
+} 
 }
 
 export default Feed

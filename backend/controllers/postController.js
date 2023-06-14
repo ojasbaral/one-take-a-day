@@ -37,7 +37,7 @@ const getPost = async (req,res) => {
     var message = 'success'
     var content = []
     var currentPost = {}
-    var liked = false
+    var current_liked = false
     const { id, page } = req.params
     var test = await pool.query("SELECT p.like_count, p.comment_count, p.post_id, p.like_count, p.comment_count, p.account_id, p.posted, p.content, a.username, a.display_name FROM post p INNER JOIN account a ON a.user_id = p.account_id WHERE account_id=$1 ORDER BY posted DESC LIMIT 1", [id])
     if(test.rowCount !== 0){
@@ -47,7 +47,7 @@ const getPost = async (req,res) => {
             currentPost = test.rows[0]
             const x = await pool.query("SELECT * FROM likes WHERE post_id=$1 AND account_id=$2", [currentPost.post_id, id])
             if (x.rowCount !== 0){
-                liked=true
+                current_liked=true
             }
         }
     }
@@ -99,7 +99,7 @@ const getPost = async (req,res) => {
     
 }
 
-    return res.send({ message: message, content: content, posted: posted, current_post: currentPost, current_liked: liked })
+    return res.send({ message: message, content: content, posted: posted, current_post: currentPost, current_liked: current_liked })
 } catch (e){
     return res.send(e)
 }
