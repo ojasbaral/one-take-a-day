@@ -6,6 +6,7 @@ import About from './pages/about'
 import Feed from './pages/feed'
 import ErrorPage from './pages/errorPage'
 import PostPage from './pages/postPage'
+import Account from './pages/account'
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Route path='/about' element={<About></About>}></Route>
           <Route path='/home/:id' element={<Feed></Feed>}></Route>
           <Route path="/error" element={<ErrorPage></ErrorPage>}></Route>
-          <Route path='/post/:id' element={<PostPage></PostPage>}></Route>
+          <Route path='/post/:id/:user_id' element={<PostPage></PostPage>}></Route>
+          <Route path='/account/:id/:view_id' element={<Account></Account>}></Route>
         </Routes>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </main>

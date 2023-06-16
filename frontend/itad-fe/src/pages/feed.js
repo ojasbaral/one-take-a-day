@@ -161,7 +161,6 @@ async function addPost(){
           }
       }).then((res) => res.json())
       .then((json) => {
-        console.log(json)
         if(json.message === "already posted"){
           setErrorMsg('You have already posted today')
         }else{
@@ -283,7 +282,7 @@ async function addPost(){
     return (
       <div className="flex justify-between ">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
-        <VerticalHeader></VerticalHeader>
+        <VerticalHeader user_id={0} account_id={id} view_id={id}></VerticalHeader>
         <div className="mr-20 mt-4 text-3xl w-full ml-32">
           <h1 className="text-right mb-2">{date}</h1>
           <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
@@ -299,7 +298,7 @@ async function addPost(){
             <HashtagList hashtags={currentPost.hashtags}></HashtagList>
             <div className="flex justify-left mb-2 mt-2">
             <a className="flex ml-2"><p className="text-base mr-1">{likeCount}</p>{liked?<AiFillFire size={23} className="cursor-pointer hover:text-red-700" color="red" onClick={delLike}></AiFillFire>:<AiOutlineFire size={23} className="cursor-pointer hover:text-red-700" onClick={addLike}></AiOutlineFire>}</a>
-            <a className="flex ml-5"><p className="text-base mr-1">{currentPost.comment_count}</p><AiOutlineComment size={23} className="cursor-pointer hover:text-red-700" onClick={() => navigate('/post/' + currentPost.post_id)}></AiOutlineComment></a>
+            <a className="flex ml-5"><p className="text-base mr-1">{currentPost.comment_count}</p><AiOutlineComment size={23} className="cursor-pointer hover:text-red-700" onClick={() => navigate('/post/' + currentPost.post_id  + '/' + id)}></AiOutlineComment></a>
               <a><AiOutlineDelete size={23} className="ml-5 cursor-pointer hover:text-red-700 float-right" onClick={delPost}></AiOutlineDelete></a>
             </div>
           </div>
@@ -318,7 +317,7 @@ async function addPost(){
   return (
     <div className="flex justify-between ">
       <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
-      <VerticalHeader></VerticalHeader>
+      <VerticalHeader user_id={0} account_id={id} view_id={id}></VerticalHeader>
       <div className="mr-20 mt-4 text-3xl w-full ml-32">
         <h1 className="text-right mb-2">{date}</h1>
         <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
@@ -336,6 +335,11 @@ async function addPost(){
         </div>
         </div>
         <PostList content={posts} user_id={id}></PostList>
+
+        <div className="w-auto h-auto border-black border-solid border-2 mt-2 rounded mb-2">
+            <h1 className="text-center m-1">No More Posts</h1>
+          </div>
+
       </div>
     </div>
   )

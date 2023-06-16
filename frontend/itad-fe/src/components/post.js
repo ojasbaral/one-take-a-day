@@ -6,12 +6,12 @@ import { refreshUserToken, checkCallback} from '../utilities/helper'
 import { useNavigate } from 'react-router-dom'
 
 const Post = ({ content, user_id }) => {
-  const [liked, setLiked] = useState(null)
+  const [liked, setLiked] = useState(content.liked)
   const [likeCount, setLikeCount] = useState(null)
   const navigate = useNavigate()
 
   useEffect(() => {
-    setLiked(content.liked)
+    console.log(content.liked)
     setLikeCount(content.like_count)
   }, [])
 
@@ -95,7 +95,7 @@ const Post = ({ content, user_id }) => {
             <HashtagList hashtags={content.hashtags}></HashtagList>
             <div className="flex justify-left mb-2 mt-2">
               <a className="flex ml-2"><p className="text-base mr-1">{likeCount}</p>{liked?<AiFillFire size={23} className="cursor-pointer hover:text-red-700" color="red" onClick={delLike}></AiFillFire>:<AiOutlineFire size={23} className="cursor-pointer hover:text-red-700" onClick={addLike}></AiOutlineFire>}</a>
-              <a className="flex ml-5"><p className="text-base mr-1">{content.comment_count}</p><AiOutlineComment size={23} className="cursor-pointer hover:text-red-700" onClick={() => navigate('/post/' + content.post_id)}></AiOutlineComment></a>
+              <a className="flex ml-5"><p className="text-base mr-1">{content.comment_count}</p><AiOutlineComment size={23} className="cursor-pointer hover:text-red-700" onClick={() => navigate('/post/' + content.post_id + '/' + user_id)}></AiOutlineComment></a>
             </div>
           </div>
   )

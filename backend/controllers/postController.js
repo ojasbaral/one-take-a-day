@@ -30,7 +30,6 @@ const addPost = async (req, res) => {
     }
 }
 
-
 const getPost = async (req,res) => {
     try{
     var posted = false
@@ -64,7 +63,7 @@ const getPost = async (req,res) => {
     }
     
     const bottom = (page-1) * 25
-    const posts = await pool.query("SELECT p.post_id, p.comment_count, p.like_count, p.account_id, p.posted, p.content, a.username, a.display_name FROM post p INNER JOIN account a ON a.user_id = p.account_id WHERE a.user_id IN (SELECT account_b_id FROM friend WHERE account_a_id=$1) ORDER BY p.posted DESC OFFSET $2 LIMIT 25", [id, bottom])
+    const posts = await pool.query("SELECT p.post_id, p.comment_count, p.like_count, p.account_id, p.posted, p.content, a.username, a.display_name FROM post p INNER JOIN account a ON a.user_id = p.account_id WHERE a.user_id IN (SELECT account_b_id FROM friend WHERE account_a_id=$1) ORDER BY p.posted DESC", [id])
     if (posts.rowCount === 0){
         content = []
     }else{

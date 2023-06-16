@@ -3,6 +3,7 @@ const router = express.Router()
 const postController = require('../controllers/postController')
 const likeController = require('../controllers/likeController')
 const commentController = require('../controllers/commentController')
+const accountController = require('../controllers/accountController')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
@@ -43,7 +44,9 @@ router.post('/comment', commentController.addComment)
 
 router.delete('/comment', commentController.delComment)
 
-router.get('/comment/:post_id', commentController.getComment)
+router.get('/comment/:post_id/:user_id', commentController.getComment)
+
+router.get('/account/:user_id/:viewer_id', accountController.getAccount)
 
 
 module.exports = router
