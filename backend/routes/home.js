@@ -4,6 +4,7 @@ const postController = require('../controllers/postController')
 const likeController = require('../controllers/likeController')
 const commentController = require('../controllers/commentController')
 const accountController = require('../controllers/accountController')
+const friendController = require('../controllers/friendController')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
@@ -46,7 +47,16 @@ router.delete('/comment', commentController.delComment)
 
 router.get('/comment/:post_id/:user_id', commentController.getComment)
 
+
 router.get('/account/:user_id/:viewer_id', accountController.getAccount)
+
+router.post('/friend', accountController.addFriend)
+
+router.delete('/friend', accountController.delFriend)
+
+router.get('/friend/:id', friendController.getFriends)
+
+router.get('/search/:word', friendController.searchUsers)
 
 
 module.exports = router

@@ -53,10 +53,21 @@ const getAccount = async (req, res) => {
 const addFriend = async (req, res) => {
     try{
         const { follower, following } = req.body
-
+        await pool.query("INSERT INTO friend (account_a_id, account_b_id) VALUES ($1, $2)", [follower, following])
+        return res.send({ message: "success" })
     }catch(e){
         return res.send(e)
     }
 }
 
-module.exports = {getAccount}
+const delFriend = async (req, res) => {
+    try{
+        const { follower, following } = req.body
+        await pool.query("DELETE FROM FRIEND WHERE account_a_id=$1 AND account_b_id=$2", [follower, following])
+        return res.send({ message: "success" })
+    }catch(e){
+        return res.send(e)
+    }
+}
+
+module.exports = { getAccount, addFriend, delFriend }
