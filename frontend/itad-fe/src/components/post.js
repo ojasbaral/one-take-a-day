@@ -1,11 +1,11 @@
 import React, { useState, useEffect} from 'react'
 import HashtagList from '../components/hashtagList'
-import { AiOutlineFire, AiOutlineComment, AiFillFire } from "react-icons/ai"
+import { AiOutlineFire, AiOutlineComment, AiFillFire, AiOutlineDelete } from "react-icons/ai"
 import Loading from '../components/loading'
 import { refreshUserToken, checkCallback} from '../utilities/helper'
 import { useNavigate } from 'react-router-dom'
 
-const Post = ({ content, user_id }) => {
+const Post = ({ content, user_id, owned }) => {
   const [liked, setLiked] = useState(content.liked)
   const [likeCount, setLikeCount] = useState(null)
   const navigate = useNavigate()
@@ -79,6 +79,35 @@ const Post = ({ content, user_id }) => {
       return navigate('/error')
     }
   }
+
+  async function delPost(){
+    try{
+      const refresh = await refreshUserToken()
+        if (refresh){
+          navigate('/login')
+        }
+  
+        await fetch('/post', {
+          method: "DELETE",
+          body: JSON.stringify({
+            post_id: content.post_id
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          }
+        }).then((res) => res.json())
+        .then((json) => {
+          const valid = checkCallback(json)
+          if(valid === 0){
+            window.location.reload(false)
+          }else if(valid === 1){
+            navigate('/login')
+          }
+        })
+    }catch (e){
+      return navigate('/error')
+    }
+  }
   
   if(liked === null){
     return <div><Loading></Loading></div>
@@ -96,6 +125,7 @@ const Post = ({ content, user_id }) => {
             <div className="flex justify-left mb-2 mt-2">
               <a className="flex ml-2"><p className="text-base mr-1">{likeCount}</p>{liked?<AiFillFire size={23} className="cursor-pointer hover:text-red-700" color="red" onClick={delLike}></AiFillFire>:<AiOutlineFire size={23} className="cursor-pointer hover:text-red-700" onClick={addLike}></AiOutlineFire>}</a>
               <a className="flex ml-5"><p className="text-base mr-1">{content.comment_count}</p><AiOutlineComment size={23} className="cursor-pointer hover:text-red-700" onClick={() => navigate('/post/' + content.post_id + '/' + user_id)}></AiOutlineComment></a>
+              {owned?<a><AiOutlineDelete size={23} className="ml-5 cursor-pointer hover:text-red-700 float-right" onClick={delPost}></AiOutlineDelete></a>:null}
             </div>
           </div>
   )

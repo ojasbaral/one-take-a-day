@@ -282,7 +282,7 @@ async function addPost(){
     return (
       <div className="flex justify-between ">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
-        <VerticalHeader user_id={0} account_id={id} view_id={id}></VerticalHeader>
+        <VerticalHeader user_id={0} account_id={id} view_id={id} friend_id={id}></VerticalHeader>
         <div className="mr-20 mt-4 text-3xl w-full ml-32">
           <h1 className="text-right mb-2">{date}</h1>
           <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
@@ -303,7 +303,7 @@ async function addPost(){
             </div>
           </div>
 
-        <PostList content={posts} user_id={id}></PostList>
+        <PostList content={posts} user_id={id} owned={false}></PostList>
 
         <div className="w-auto h-auto border-black border-solid border-2 mt-2 rounded mb-2">
             <h1 className="text-center m-1">No More Posts</h1>
@@ -317,7 +317,7 @@ async function addPost(){
   return (
     <div className="flex justify-between ">
       <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
-      <VerticalHeader user_id={0} account_id={id} view_id={id}></VerticalHeader>
+      <VerticalHeader user_id={0} account_id={id} view_id={id} friend_id={id}></VerticalHeader>
       <div className="mr-20 mt-4 text-3xl w-full ml-32">
         <h1 className="text-right mb-2">{date}</h1>
         <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
@@ -334,7 +334,7 @@ async function addPost(){
         <button className="bg-black text-white w-1/5 h-8 rounded text-xl mr-1 mb-1 hover:bg-white hover:text-black hover:border-2 hover:border-black hover:border-solid float-right" onClick={handlePost}>POST</button>
         </div>
         </div>
-        <PostList content={posts} user_id={id}></PostList>
+        <PostList content={posts} user_id={id} owned={false}></PostList>
 
         <div className="w-auto h-auto border-black border-solid border-2 mt-2 rounded mb-2">
             <h1 className="text-center m-1">No More Posts</h1>

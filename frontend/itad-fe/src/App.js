@@ -7,6 +7,8 @@ import Feed from './pages/feed'
 import ErrorPage from './pages/errorPage'
 import PostPage from './pages/postPage'
 import Account from './pages/account'
+import Friends from './pages/friends'
+import Search from './pages/search'
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/error" element={<ErrorPage></ErrorPage>}></Route>
           <Route path='/post/:id/:user_id' element={<PostPage></PostPage>}></Route>
           <Route path='/account/:id/:view_id' element={<Account></Account>}></Route>
+          <Route path='/friends/:id' element={<Friends></Friends>}></Route>
+          <Route path='/search/:id/:word' element={<Search></Search>}></Route>
         </Routes>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </main>
