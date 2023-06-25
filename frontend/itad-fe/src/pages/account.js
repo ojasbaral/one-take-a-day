@@ -5,6 +5,7 @@ import Loading from '../components/loading'
 import VerticalHeader from '../components/verticalHeader'
 import Error from '../components/error'
 import PostList from '../components/postList'
+import { AiOutlineSearch } from 'react-icons/ai'
 
 
 const Account = () => {
@@ -12,6 +13,7 @@ const Account = () => {
     const [posts, setPosts] = useState(null)
     const [user, setUser] = useState(null)
     const [errorMsg, setErrorMsg] = useState('')
+    const [search, setSearch] = useState('')
     const [following, setFollowing] = useState(null)
     const { id, view_id } = useParams()
     const navigate = useNavigate()
@@ -123,6 +125,22 @@ const Account = () => {
         }
     }
 
+    function handleKey(e){
+        if(e.key === 'Enter'){
+            if(search !== ''){
+                navigate('/search/' + id + '/' + search + '/' + '0')
+                window.location.reload(false)
+            }
+        }
+    }
+
+    function handleSearch(){
+        if(search !== ''){
+            navigate('/search/' + id + '/' + search + '/' + '0')
+            window.location.reload(false)
+        }
+    }
+
     if(user === null || posts === null){
         return <div><Loading></Loading></div>
     }
@@ -130,8 +148,9 @@ const Account = () => {
   return (
     <div className="flex justify-between">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
-        <VerticalHeader user_id={view_id} account_id={id} view_id={view_id} friend_id={view_id}></VerticalHeader>
+        <VerticalHeader trending_id={view_id} user_id={view_id} account_id={id} view_id={view_id} friend_id={view_id}></VerticalHeader>
         <div className="mr-20 mt-4 text-3xl w-full ml-32">
+        <div className="flex items-center mb-4"><input onKeyPress={(e) => handleKey(e)} type="text" className="w-full rounded-lg" placeholder="SEARCH FOR A USERNAME" value={search} onChange={(e) => setSearch(e.target.value.replace(" ", ""))}></input><AiOutlineSearch className="cursor-pointer ml-2" onClick={handleSearch}></AiOutlineSearch></div>
         <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
         <div className="flex items-center">
         <p>{user.display_name} &#160;</p>
@@ -140,7 +159,7 @@ const Account = () => {
         <h3 className="text-xl">{user.bio}</h3>
         {(id !== view_id)?<div className="text-base mt-1 mb-1 bg-black text-white rounded w-24 text-center cursor-pointer hover:bg-white hover:text-black border-2 border-black border-solid" onClick={handleFollowBtn}>{following?"Following":"Follow"}</div>:null}
         {posts.length === 0?<h1 className="mt-4">THIS USER HAS NO POSTS</h1>:null}
-        <PostList content={posts} user_id={id} owned={id === view_id}></PostList>
+        <PostList content={posts} user_id={view_id} owned={id === view_id}></PostList>
         
         </div>
     </div>

@@ -5,6 +5,7 @@ const likeController = require('../controllers/likeController')
 const commentController = require('../controllers/commentController')
 const accountController = require('../controllers/accountController')
 const friendController = require('../controllers/friendController')
+const trendingController = require("../controllers/trendingController")
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
@@ -57,6 +58,12 @@ router.delete('/friend', accountController.delFriend)
 router.get('/friend/:id', friendController.getFriends)
 
 router.get('/search/:word', friendController.searchUsers)
+
+router.get('/trending/:id', trendingController.getTrending)
+
+router.get('/search/hashtag/:word', trendingController.searchHashtags)
+
+router.get('/hashtag/:hashtag_id/:user_id', trendingController.getHashtag)
 
 
 module.exports = router

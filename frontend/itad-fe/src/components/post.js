@@ -11,7 +11,6 @@ const Post = ({ content, user_id, owned }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    console.log(content.liked)
     setLikeCount(content.like_count)
   }, [])
 
@@ -116,12 +115,12 @@ const Post = ({ content, user_id, owned }) => {
   return (
     <div className="w-auto h-auto border-black border-solid border-2 mt-2 rounded">
             <div className="flex mt-1 ml-1 mr-1 justify-between content-center">
-            <p className="text-xl float-left cursor-pointer hover:font-bold hover:text-blue-600">{content.display_name}</p>
+            <p className="text-xl float-left cursor-pointer hover:font-bold hover:text-blue-600" onClick={() => navigate('/account/' + content.user_id + '/' + user_id)}>{content.display_name}</p>
             <p className="text-base float-right">{content.posted.toString().slice(0,10)}</p>
             </div>
             <h6 className="text-base ml-2 -mt-1 text-gray-700">@{content.username}</h6>
             <p className="ml-2 text-base mt-1">{content.content}</p>
-            <HashtagList hashtags={content.hashtags}></HashtagList>
+            <HashtagList user_id={user_id} hashtags={content.hashtags}></HashtagList>
             <div className="flex justify-left mb-2 mt-2">
               <a className="flex ml-2"><p className="text-base mr-1">{likeCount}</p>{liked?<AiFillFire size={23} className="cursor-pointer hover:text-red-700" color="red" onClick={delLike}></AiFillFire>:<AiOutlineFire size={23} className="cursor-pointer hover:text-red-700" onClick={addLike}></AiOutlineFire>}</a>
               <a className="flex ml-5"><p className="text-base mr-1">{content.comment_count}</p><AiOutlineComment size={23} className="cursor-pointer hover:text-red-700" onClick={() => navigate('/post/' + content.post_id + '/' + user_id)}></AiOutlineComment></a>

@@ -9,6 +9,8 @@ import PostPage from './pages/postPage'
 import Account from './pages/account'
 import Friends from './pages/friends'
 import Search from './pages/search'
+import Trending from './pages/trending'
+import HashtagPage from './pages/hashtagPage'
 
 function App() {
   return (
@@ -24,7 +26,9 @@ function App() {
           <Route path='/post/:id/:user_id' element={<PostPage></PostPage>}></Route>
           <Route path='/account/:id/:view_id' element={<Account></Account>}></Route>
           <Route path='/friends/:id' element={<Friends></Friends>}></Route>
-          <Route path='/search/:id/:word' element={<Search></Search>}></Route>
+          <Route path='/search/:id/:word/:type' element={<Search></Search>}></Route>
+          <Route path='/trending/:id' element={<Trending></Trending>}></Route>
+          <Route path='/hashtag/:hashtag_id/:id' element={<HashtagPage></HashtagPage>}></Route>
         </Routes>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </main>
