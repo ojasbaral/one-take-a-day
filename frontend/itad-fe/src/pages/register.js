@@ -159,6 +159,7 @@ const Register = () => {
             </div>
             <button className="mt-5 bg-black text-white w-full h-11 rounded text-xl" onClick={handleRegisterBtn}>Register</button>
           </div>
+
           
         </div>
         </div>

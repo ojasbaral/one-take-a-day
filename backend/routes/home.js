@@ -66,4 +66,10 @@ router.get('/search/hashtag/:word', trendingController.searchHashtags)
 router.get('/hashtag/:hashtag_id/:user_id', trendingController.getHashtag)
 
 
+router.get('/settings/:id', accountController.getSettings)
+
+router.put('/settings/display', accountController.editDisplayName )
+
+router.put('/settings/bio', accountController.editBio )
+
 module.exports = router

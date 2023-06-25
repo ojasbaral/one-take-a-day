@@ -282,7 +282,7 @@ async function addPost(){
     return (
       <div className="flex justify-between ">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
-        <VerticalHeader user_id={0} account_id={id} view_id={id} friend_id={id} trending_id={id}></VerticalHeader>
+        <VerticalHeader settings_id={id} user_id={0} account_id={id} view_id={id} friend_id={id} trending_id={id}></VerticalHeader>
         <div className="mr-20 mt-4 text-3xl w-full ml-32">
           <h1 className="text-right mb-2">{date}</h1>
           <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
@@ -317,7 +317,7 @@ async function addPost(){
   return (
     <div className="flex justify-between ">
       <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
-      <VerticalHeader user_id={0} account_id={id} view_id={id} friend_id={id} trending_id={id}></VerticalHeader>
+      <VerticalHeader user_id={0} settings_id={id} account_id={id} view_id={id} friend_id={id} trending_id={id}></VerticalHeader>
       <div className="mr-20 mt-4 text-3xl w-full ml-32">
         <h1 className="text-right mb-2">{date}</h1>
         <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>

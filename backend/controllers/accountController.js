@@ -70,4 +70,34 @@ const delFriend = async (req, res) => {
     }
 }
 
-module.exports = { getAccount, addFriend, delFriend }
+const getSettings = async (req, res) => {
+    try{
+        const { id } = req.params
+        const user = await pool.query("SELECT display_name, bio FROM account WHERE user_id=$1", [id])
+        return res.send({ message: "success", user: user.rows[0] })
+    }catch(e){
+        return res.send(e)
+    }
+}
+
+const editDisplayName = async (req, res) => {
+    try{
+        const { id, displayName } = req.body
+        await pool.query("UPDATE account SET display_name=$1 WHERE user_id=$2", [displayName, id])
+        return res.send({ message: "success" })
+
+    }catch(e){
+        return res.send(e)
+    }
+}
+
+const editBio = async (req, res) => {
+    try{
+        const { id, bio } = req.body
+        await pool.query("UPDATE account SET bio=$1 WHERE user_id=$2", [bio, id])
+        return res.send({ message: "success" })
+    }catch(e){
+        return res.send(e)
+    }
+}
+module.exports = { getAccount, addFriend, delFriend, getSettings, editDisplayName, editBio }

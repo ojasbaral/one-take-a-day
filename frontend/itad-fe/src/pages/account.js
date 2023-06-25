@@ -148,7 +148,7 @@ const Account = () => {
   return (
     <div className="flex justify-between">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
-        <VerticalHeader trending_id={view_id} user_id={view_id} account_id={id} view_id={view_id} friend_id={view_id}></VerticalHeader>
+        <VerticalHeader trending_id={view_id} user_id={view_id} account_id={id} view_id={view_id} friend_id={view_id} settings_id={view_id}></VerticalHeader>
         <div className="mr-20 mt-4 text-3xl w-full ml-32">
         <div className="flex items-center mb-4"><input onKeyPress={(e) => handleKey(e)} type="text" className="w-full rounded-lg" placeholder="SEARCH FOR A USERNAME" value={search} onChange={(e) => setSearch(e.target.value.replace(" ", ""))}></input><AiOutlineSearch className="cursor-pointer ml-2" onClick={handleSearch}></AiOutlineSearch></div>
         <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>

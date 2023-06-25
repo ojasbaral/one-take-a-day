@@ -11,6 +11,7 @@ import Friends from './pages/friends'
 import Search from './pages/search'
 import Trending from './pages/trending'
 import HashtagPage from './pages/hashtagPage'
+import Settings from './pages/settings'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/search/:id/:word/:type' element={<Search></Search>}></Route>
           <Route path='/trending/:id' element={<Trending></Trending>}></Route>
           <Route path='/hashtag/:hashtag_id/:id' element={<HashtagPage></HashtagPage>}></Route>
+          <Route path='/settings/:id' element={<Settings></Settings>}></Route>
         </Routes>
         <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       </main>
