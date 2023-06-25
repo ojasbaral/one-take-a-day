@@ -9,7 +9,7 @@ const Following = ({ user }) => {
 
     async function delFriend(){
         try{
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(id)
             if (refresh){
               navigate('/login')
             }

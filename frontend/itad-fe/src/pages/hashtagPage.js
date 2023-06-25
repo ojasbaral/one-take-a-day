@@ -16,7 +16,7 @@ const HashtagPage = () => {
 
     useEffect(() => {
         async function effect(){
-            const valid = await refreshUserToken()
+            const valid = await refreshUserToken(id)
             setLogin(valid)
             getHashtag()
             return () => {}
@@ -30,7 +30,7 @@ const HashtagPage = () => {
 
     async function getHashtag(){
         try{    
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(id)
             if (refresh){
                 navigate('/login')
             }

@@ -17,7 +17,7 @@ const Trending = () => {
 
     useEffect(() => {
         async function effect(){
-            const valid = await refreshUserToken()
+            const valid = await refreshUserToken(id)
             setLogin(valid)
             getTrending()
             return () => {}
@@ -31,7 +31,7 @@ const Trending = () => {
 
     async function getTrending(){
         try{    
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(id)
             if (refresh){
                 navigate('/login')
             }

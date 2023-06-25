@@ -1,17 +1,21 @@
-async function refreshUserToken(){
+async function refreshUserToken(user_id){
     try{
+        var result = true
         await fetch('/auth/refresh', {
             method: "POST",
+            body: JSON.stringify({
+                user_id: user_id
+            }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then((response) => response.json())
         .then((json) => {
             if (json.message === "success"){
-                return false
+                result = false
             }
-            return true
         })
+        return result
     } catch (e) {
         console.log(e)
     }

@@ -17,7 +17,7 @@ const Post = ({ content, user_id, owned }) => {
   
   async function delLike(){
     try{
-      const refresh = await refreshUserToken()
+      const refresh = await refreshUserToken(user_id)
       if (refresh){
         navigate('/login')
       }
@@ -50,7 +50,7 @@ const Post = ({ content, user_id, owned }) => {
 
   async function addLike(){
     try{
-      const refresh = await refreshUserToken()
+      const refresh = await refreshUserToken(user_id)
       if (refresh){
         navigate('/login')
       }
@@ -81,7 +81,7 @@ const Post = ({ content, user_id, owned }) => {
 
   async function delPost(){
     try{
-      const refresh = await refreshUserToken()
+      const refresh = await refreshUserToken(user_id)
         if (refresh){
           navigate('/login')
         }

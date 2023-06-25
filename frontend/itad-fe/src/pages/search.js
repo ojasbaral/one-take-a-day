@@ -16,7 +16,7 @@ const Search = () => {
 
     useEffect(() => {
         async function effect(){
-            const valid = await refreshUserToken()
+            const valid = await refreshUserToken(id)
             setLogin(valid)
             if(type === '0'){
                 getUserSearch()
@@ -34,7 +34,7 @@ const Search = () => {
 
     async function getUserSearch(){
         try{
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(id)
             if (refresh){
                 navigate('/login')
             }
@@ -56,7 +56,7 @@ const Search = () => {
 
     async function getHashtagSearch(){
         try{
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(id)
             if (refresh){
                 navigate('/login')
             }

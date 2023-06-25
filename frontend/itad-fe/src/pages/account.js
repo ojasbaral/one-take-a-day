@@ -20,7 +20,7 @@ const Account = () => {
 
     useEffect(() => {
         async function effect(){
-            const valid = await refreshUserToken()
+            const valid = await refreshUserToken(view_id)
             setLogin(valid)
             getAccount()
             return () => {}
@@ -34,7 +34,7 @@ const Account = () => {
 
     async function getAccount(){
         try{
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(view_id)
             if (refresh){
                 navigate('/login')
             }
@@ -67,7 +67,7 @@ const Account = () => {
 
     async function follow(){
         try{
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(view_id)
             if (refresh){
                 navigate('/login')
             }
@@ -97,7 +97,7 @@ const Account = () => {
 
     async function unfollow(){
         try{
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(view_id)
             if (refresh){
                 navigate('/login')
             }

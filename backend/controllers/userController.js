@@ -121,10 +121,14 @@ const login = async (req, res) => {
 }
 
 const refresh = (req, res) => {
+    const { user_id } = req.body
     if (req.cookies.refresh_token){
         const refreshToken = req.cookies.refresh_token
 
         jwt.verify(refreshToken, jwtRefreshPass, (err, decoded) => {
+            if (user_id.toString() !== decoded.user_id.toString()){
+                return res.status(401).send({message: "unauthorized"})
+            }
             if (err){
                 return res.status(401).send({ message: 'unauthorized'})
             } else {

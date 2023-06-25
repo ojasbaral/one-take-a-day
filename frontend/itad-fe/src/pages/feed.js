@@ -33,7 +33,7 @@ const Feed = () => {
   useEffect(()=> {
     async function effect(){
       formatDate(new Date())
-      const valid = await refreshUserToken()
+      const valid = await refreshUserToken(id)
       setLogin(valid)
       getPosts()
       return () => {}
@@ -47,7 +47,7 @@ const Feed = () => {
 
   async function getPosts(){
     try{
-      const refresh = await refreshUserToken()
+      const refresh = await refreshUserToken(id)
       if (refresh){
         navigate('/login')
       }
@@ -114,7 +114,7 @@ const Feed = () => {
 
 async function delPost(){
   try{
-    const refresh = await refreshUserToken()
+    const refresh = await refreshUserToken(id)
       if (refresh){
         navigate('/login')
       }
@@ -143,7 +143,7 @@ async function delPost(){
 
 async function addPost(){
   try{
-      const refresh = await refreshUserToken()
+      const refresh = await refreshUserToken(id)
       if (refresh){
         navigate('/login')
       }
@@ -181,7 +181,7 @@ async function addPost(){
 
   async function delLike(){
     try{
-      const refresh = await refreshUserToken()
+      const refresh = await refreshUserToken(id)
       if (refresh){
         navigate('/login')
       }
@@ -214,7 +214,7 @@ async function addPost(){
 
   async function addLike(){
     try{
-      const refresh = await refreshUserToken()
+      const refresh = await refreshUserToken(id)
       if (refresh){
         navigate('/login')
       }

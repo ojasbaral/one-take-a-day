@@ -26,7 +26,7 @@ const PostPage = () => {
     useEffect(() => {
         async function effect(){
             formatDate(new Date())
-            const valid = await refreshUserToken()
+            const valid = await refreshUserToken(user_id)
             setLogin(valid)
             getComments()
             return () => {}
@@ -40,7 +40,7 @@ const PostPage = () => {
 
     async function getComments(){
         try{
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(user_id)
             if (refresh){
                 navigate('/login')
             }
@@ -83,7 +83,7 @@ const PostPage = () => {
 
       async function delLike(){
         try{
-          const refresh = await refreshUserToken()
+          const refresh = await refreshUserToken(user_id)
           if (refresh){
             navigate('/login')
           }
@@ -116,7 +116,7 @@ const PostPage = () => {
     
       async function addLike(){
         try{
-          const refresh = await refreshUserToken()
+          const refresh = await refreshUserToken(user_id)
           if (refresh){
             navigate('/login')
           }
@@ -147,7 +147,7 @@ const PostPage = () => {
 
       async function delPost(){
         try{
-          const refresh = await refreshUserToken()
+          const refresh = await refreshUserToken(user_id)
             if (refresh){
               navigate('/login')
             }
@@ -189,7 +189,7 @@ const PostPage = () => {
 
       async function addComment(){
         try{
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(user_id)
             if (refresh){
                 navigate('/login')
             }

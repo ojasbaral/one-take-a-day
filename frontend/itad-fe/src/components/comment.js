@@ -16,7 +16,7 @@ const Comment = ({ comment, user_id }) => {
 
     async function delComment(){
         try{
-            const refresh = await refreshUserToken()
+            const refresh = await refreshUserToken(user_id)
             if (refresh){
                 navigate('/login')
             }
