@@ -41,7 +41,8 @@ const Register = () => {
               return () => {}
           })
     } catch (e) {
-        return navigate('/error')
+        console.log(e)
+        //return navigate('/error')
     }
         }
         result()
