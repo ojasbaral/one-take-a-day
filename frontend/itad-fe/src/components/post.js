@@ -22,7 +22,7 @@ const Post = ({ content, user_id, owned }) => {
         navigate('/login')
       }
 
-      await fetch("/like", {
+      await fetch("https://one-take-a-day-backend.onrender.com/like", {
         method: "DELETE",
         body: JSON.stringify({
           post_id: content.post_id,
@@ -55,7 +55,7 @@ const Post = ({ content, user_id, owned }) => {
         navigate('/login')
       }
 
-      await fetch('/like', {
+      await fetch('https://one-take-a-day-backend.onrender.com/like', {
         method: "POST",
         body: JSON.stringify({
           post_id: content.post_id,
@@ -86,7 +86,7 @@ const Post = ({ content, user_id, owned }) => {
           navigate('/login')
         }
   
-        await fetch('/post', {
+        await fetch('https://one-take-a-day-backend.onrender.com/post', {
           method: "DELETE",
           body: JSON.stringify({
             post_id: content.post_id

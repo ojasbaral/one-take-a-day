@@ -34,7 +34,7 @@ const Settings = () => {
                 navigate('/login')
             }
 
-            await fetch('/settings/' + id)
+            await fetch('https://one-take-a-day-backend.onrender.com/settings/' + id)
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)
@@ -61,7 +61,7 @@ const Settings = () => {
                 navigate('/login')
             }
 
-            await fetch('/settings/display', {
+            await fetch('https://one-take-a-day-backend.onrender.com/settings/display', {
                 method: "PUT",
                 body: JSON.stringify({
                     id: id,
@@ -92,7 +92,7 @@ const Settings = () => {
                 navigate('/login')
             }
 
-            await fetch('/settings/bio', {
+            await fetch('https://one-take-a-day-backend.onrender.com/settings/bio', {
                 method: "PUT",
                 body: JSON.stringify({
                     id: id,

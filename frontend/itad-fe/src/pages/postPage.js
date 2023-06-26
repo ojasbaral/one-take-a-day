@@ -44,7 +44,7 @@ const PostPage = () => {
             if (refresh){
                 navigate('/login')
             }
-            await fetch(('/comment/' + id + '/' + user_id))
+            await fetch(('https://one-take-a-day-backend.onrender.com/comment/' + id + '/' + user_id))
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)
@@ -88,7 +88,7 @@ const PostPage = () => {
             navigate('/login')
           }
     
-          await fetch("/like", {
+          await fetch("https://one-take-a-day-backend.onrender.com/like", {
             method: "DELETE",
             body: JSON.stringify({
               post_id: id,
@@ -121,7 +121,7 @@ const PostPage = () => {
             navigate('/login')
           }
     
-          await fetch('/like', {
+          await fetch('https://one-take-a-day-backend.onrender.com/like', {
             method: "POST",
             body: JSON.stringify({
               post_id: id,
@@ -152,7 +152,7 @@ const PostPage = () => {
               navigate('/login')
             }
       
-            await fetch('/post', {
+            await fetch('https://one-take-a-day-backend.onrender.com/post', {
               method: "DELETE",
               body: JSON.stringify({
                 post_id: id
@@ -194,7 +194,7 @@ const PostPage = () => {
                 navigate('/login')
             }
 
-            await fetch('/comment', {
+            await fetch('https://one-take-a-day-backend.onrender.com/comment', {
                 method: "POST",
                 body: JSON.stringify({
                     post_id: id,

@@ -14,7 +14,7 @@ const Following = ({ user }) => {
               navigate('/login')
             }
 
-            await fetch('/friend', {
+            await fetch('https://one-take-a-day-backend.onrender.com/friend', {
                 method: "DELETE",
                 body: JSON.stringify({
                     follower: id,

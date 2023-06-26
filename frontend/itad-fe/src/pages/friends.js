@@ -36,7 +36,7 @@ const Friends = () => {
                 navigate('/login')
             }
 
-            await fetch('/friend/' + id)
+            await fetch('https://one-take-a-day-backend.onrender.com/friend/' + id)
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)

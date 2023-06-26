@@ -1,7 +1,7 @@
 export async function refreshUserToken(user_id){
     try{
         var result = true
-        await fetch('/auth/refresh', {
+        await fetch('https://one-take-a-day-backend.onrender.com/auth/refresh', {
             method: "POST",
             body: JSON.stringify({
                 user_id: user_id

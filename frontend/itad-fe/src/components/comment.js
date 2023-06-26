@@ -21,7 +21,7 @@ const Comment = ({ comment, user_id }) => {
                 navigate('/login')
             }
 
-            await fetch('/comment', {
+            await fetch('https://one-take-a-day-backend.onrender.com/comment', {
                 method: "DELETE", 
                 body: JSON.stringify({
                     post_id: comment.post_id,

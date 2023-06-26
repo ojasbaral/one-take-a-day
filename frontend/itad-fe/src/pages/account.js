@@ -39,7 +39,7 @@ const Account = () => {
                 navigate('/login')
             }
 
-            await fetch('/account/' + id +'/' + view_id)
+            await fetch('https://one-take-a-day-backend.onrender.com/account/' + id +'/' + view_id)
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)
@@ -72,7 +72,7 @@ const Account = () => {
                 navigate('/login')
             }
 
-            await fetch('/friend', {
+            await fetch('https://one-take-a-day-backend.onrender.com/friend', {
                 method: "POST",
                 body: JSON.stringify({
                     follower: view_id,
@@ -102,7 +102,7 @@ const Account = () => {
                 navigate('/login')
             }
             
-            await fetch('/friend', {
+            await fetch('https://one-take-a-day-backend.onrender.com/friend', {
                 method: "DELETE",
                 body: JSON.stringify({
                     follower: view_id,

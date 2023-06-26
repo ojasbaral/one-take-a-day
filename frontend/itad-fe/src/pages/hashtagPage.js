@@ -35,7 +35,7 @@ const HashtagPage = () => {
                 navigate('/login')
             }
 
-            await fetch('/hashtag/' + hashtag_id + '/' + id)
+            await fetch('https://one-take-a-day-backend.onrender.com/hashtag/' + hashtag_id + '/' + id)
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)

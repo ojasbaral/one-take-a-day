@@ -51,7 +51,7 @@ const Feed = () => {
       if (refresh){
         navigate('/login')
       }
-      await fetch(('/post/' + id + '/' + page.toString()))
+      await fetch(('https://one-take-a-day-backend.onrender.com/post/' + id + '/' + page.toString()))
       .then((res) => res.json())
       .then((json) => {
           const valid = checkCallback(json)
@@ -119,7 +119,7 @@ async function delPost(){
         navigate('/login')
       }
 
-      await fetch('/post', {
+      await fetch('https://one-take-a-day-backend.onrender.com/post', {
         method: "DELETE",
         body: JSON.stringify({
           post_id: currentPost.post_id
@@ -149,7 +149,7 @@ async function addPost(){
       }
 
 
-      await fetch('/post', {
+      await fetch('https://one-take-a-day-backend.onrender.com/post', {
           method: "POST",
           body: JSON.stringify({
             content: newPost,
@@ -186,7 +186,7 @@ async function addPost(){
         navigate('/login')
       }
 
-      await fetch("/like", {
+      await fetch("https://one-take-a-day-backend.onrender.com/like", {
         method: "DELETE",
         body: JSON.stringify({
           post_id: currentPost.post_id,
@@ -219,7 +219,7 @@ async function addPost(){
         navigate('/login')
       }
 
-      await fetch('/like', {
+      await fetch('https://one-take-a-day-backend.onrender.com/like', {
         method: "POST",
         body: JSON.stringify({
           post_id: currentPost.post_id,

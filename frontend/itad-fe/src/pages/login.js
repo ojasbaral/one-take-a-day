@@ -17,7 +17,7 @@ const Login = () => {
     const result = async () => {
       //await fetch('/auth/logout').then().then()
         try{
-          await fetch('/auth/login', {
+          await fetch('https://one-take-a-day-backend.onrender.com/auth/login', {
               method: "POST",
               body: JSON.stringify({
                   username: username,
@@ -61,7 +61,7 @@ const Login = () => {
 
   async function login(){
     try{
-      await fetch(('/auth/login'), {
+      await fetch(('https://one-take-a-day-backend.onrender.com/auth/login'), {
         method: "POST",
         body: JSON.stringify({
           username: username,

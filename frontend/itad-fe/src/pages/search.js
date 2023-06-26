@@ -38,7 +38,7 @@ const Search = () => {
             if (refresh){
                 navigate('/login')
             }
-            await fetch('/search/' + search)
+            await fetch('https://one-take-a-day-backend.onrender.com/search/' + search)
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)
@@ -60,7 +60,7 @@ const Search = () => {
             if (refresh){
                 navigate('/login')
             }
-            await fetch('/search/hashtag/' + search)
+            await fetch('https://one-take-a-day-backend.onrender.com/search/hashtag/' + search)
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)

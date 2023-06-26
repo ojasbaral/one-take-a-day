@@ -29,13 +29,12 @@ const Register = () => {
               }),
               headers: {
                   "Content-type": "application/json",
-                  "Access-Control-Allow-Origin": '*'
               },
             }).then((response) => {
               return response.json()
             })
             .then((json) => {   
-              console.log(json)
+              //console.log(json)
               if (json.message && json.message === "already authorized"){
                   setUserId(json.id)
                   setValid(false)
@@ -45,8 +44,8 @@ const Register = () => {
               return () => {}
           })
     } catch (e) {
-        console.log(e)
-        //return navigate('/error')
+        //console.log(e)
+        return navigate('/error')
     }
         }
         result()
@@ -76,7 +75,7 @@ const Register = () => {
 
   async function registerStepOne(){
     try{
-      await fetch(('/auth/register/' + email), {
+      await fetch(('https://one-take-a-day-backend.onrender.com/auth/register/' + email), {
         method: "GET"
       }).then((res) => res.json())
       .then((json) => {
@@ -104,7 +103,7 @@ const Register = () => {
 
   async function registerStepTwo(){
     try{
-      await fetch('/auth/register', {
+      await fetch('https://one-take-a-day-backend.onrender.com/auth/register', {
         method: "POST",
         body: JSON.stringify({
           email: email,
