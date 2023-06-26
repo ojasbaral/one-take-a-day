@@ -28,11 +28,12 @@ const Register = () => {
                   password: passwordOne
               }),
               headers: {
-                  "Content-type": "application/json; charset=UTF-8"
+                  "Content-type": "application/json; charset=UTF-8",
+                  "Access-Control-Allow-Origin": "*"
               }
             }).then((response) => response.json())
-            .then((json) => {
-              
+            .then((json) => {   
+              console.log(json)
               if (json.message && json.message === "already authorized"){
                   setUserId(json.id)
                   setValid(false)
