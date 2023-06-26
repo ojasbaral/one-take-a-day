@@ -116,7 +116,7 @@ const login = async (req, res) => {
         }
         return res.send({ message: 'unauthorized' })
     } catch (e) {
-        console.log(e)
+        return res.send({ message: 'error' })
     }
 }
 
