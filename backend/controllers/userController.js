@@ -105,9 +105,6 @@ const registerStepTwo = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { username, password } = req.body
-        if (username === '' || password === ''){
-            return res.send({ message: "success" })
-        }
         const user = await pool.query("SELECT * FROM account WHERE username=$1", [username.toLowerCase()])
         if(user.rowCount !== 0){
             const verified = await bcrypt.compare(password, user.rows[0].password)
