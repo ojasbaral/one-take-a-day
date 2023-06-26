@@ -29,6 +29,7 @@ const Register = () => {
               }),
               headers: {
                   "Content-type": "application/json",
+                  "Access-Control-Allow-Origin": '*'
               },
             }).then((response) => {
               return response.json()
