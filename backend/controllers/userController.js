@@ -38,7 +38,7 @@ function checkLoginAuth(req, res, next){
             if (err){
                 next()
             } else {
-                return res.status(409).send({ message: 'already authorized', id: decoded.user_id})
+                return res.send({ message: 'already authorized', id: decoded.user_id})
             }
         })
     } else {
@@ -58,7 +58,7 @@ function checkLogoutAuth(req, res, next) {
             }
         })
     } else {
-        return res.status(401).send({ message: "unauthorized" })
+        return res.send({ message: "unauthorized" })
     }
 }
 
@@ -114,7 +114,7 @@ const login = async (req, res) => {
                 return res.send({ message: "success", id: user.rows[0].user_id})
             }
         }
-        return res.status(401).send({ message: 'unauthorized' })
+        return res.send({ message: 'unauthorized' })
     } catch (e) {
         console.log(e)
     }
@@ -127,10 +127,10 @@ const refresh = (req, res) => {
 
         jwt.verify(refreshToken, jwtRefreshPass, (err, decoded) => {
             if (user_id.toString() !== decoded.user_id.toString()){
-                return res.status(401).send({message: "unauthorized"})
+                return res.send({message: "unauthorized"})
             }
             if (err){
-                return res.status(401).send({ message: 'unauthorized'})
+                return res.send({ message: 'unauthorized'})
             } else {
                 const accessToken = jwt.sign({ user_id: decoded.user_id }, jwtAccessPass, { expiresIn: "15m" })
 
@@ -141,12 +141,12 @@ const refresh = (req, res) => {
                     secure: state
                 })
 
-                return res.status(200).send({ message: 'success'})
+                return res.send({ message: 'success'})
 
             }
         })
     } else {
-        return res.status(401).send({ message: 'unauthorized'})
+        return res.send({ message: 'unauthorized'})
     }
 }
 
