@@ -32,8 +32,8 @@ const Register = () => {
               }
             }).then((response) => response.json()).
             then((json) => {
-              setUserId(json.id)
               if (json.message === "already authorized"){
+                  setUserId(json.id)
                   setValid(false)
               }
               setLoading(false)
