@@ -21,7 +21,7 @@ const Register = () => {
   useEffect(() => {
     const result = async () => {
         try{
-          await fetch('/auth/login', {
+          await fetch('https://one-take-a-day-backend.onrender.com/auth/login', {
               method: "POST",
               body: JSON.stringify({
                   username: username,
