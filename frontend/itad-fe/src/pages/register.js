@@ -30,12 +30,10 @@ const Register = () => {
               headers: {
                   "Content-type": "application/json; charset=UTF-8"
               }
-            }).then((response) => {
-              console.log(response)
-              response.json()
-            }).
-            then((json) => {
-              if (json.message === "already authorized"){
+            }).then((response) => response.json())
+            .then((json) => {
+              
+              if (json.message && json.message === "already authorized"){
                   setUserId(json.id)
                   setValid(false)
               }
