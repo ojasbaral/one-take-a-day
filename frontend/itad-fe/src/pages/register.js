@@ -29,7 +29,8 @@ const Register = () => {
               }),
               headers: {
                   "Content-type": "application/json",
-              }
+              },
+              mode: "cors"
             }).then((response) => {
               if(!response.ok){
                 console.log(response)
