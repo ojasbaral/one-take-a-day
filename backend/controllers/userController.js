@@ -42,6 +42,7 @@ function checkLoginAuth(req, res, next){
             }
         })
     } else {
+        console.log("hello")
         next()
     }
 }
