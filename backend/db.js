@@ -14,7 +14,6 @@ pool.connect((err) => {
         throw err
     } else{
     console.log("[DB CONNECTED]")
-    pool.query("INSERT INTO account (email, password, username, display_name) VALUES ($1, $2, $3, $4)", ['oj@gmail.com', '12345678', 'oj', 'oj'])
     }
 })
 
