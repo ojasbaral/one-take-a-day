@@ -1,4 +1,4 @@
-async function refreshUserToken(user_id){
+export async function refreshUserToken(user_id){
     try{
         var result = true
         await fetch('/auth/refresh', {
@@ -21,7 +21,7 @@ async function refreshUserToken(user_id){
     }
 }
 
-function checkCallback(callback){
+export function checkCallback(callback){
     if (callback.message === "success"){
         return 0
     }
@@ -33,5 +33,3 @@ function checkCallback(callback){
     }
     return 3
 }
-
-module.exports = { refreshUserToken, checkCallback }
