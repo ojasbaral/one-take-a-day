@@ -30,7 +30,13 @@ const Register = () => {
               headers: {
                   "Content-type": "application/json",
               }
-            }).then((response) => response.json())
+            }).then((response) => {
+              if(!response.ok){
+                console.log(response)
+                setLoading(false)
+              }
+              return response.json()
+            })
             .then((json) => {   
               console.log(json)
               if (json.message && json.message === "already authorized"){
