@@ -102,7 +102,6 @@ const login = async (req, res) => {
     try {
         const { username, password } = req.body
         const user = await pool.query("SELECT * FROM account WHERE username=$1", [username.toLowerCase()])
-        console.log(user)
         if(user.rowCount !== 0){
             const verified = await bcrypt.compare(password, user.rows[0].password)
             if(verified){

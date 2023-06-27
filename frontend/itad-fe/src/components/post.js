@@ -30,7 +30,8 @@ const Post = ({ content, user_id, owned }) => {
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
-        }
+        },
+        credentials: "include"
       }).then((res) => res.json())
       .then((json) => {
         const valid = checkCallback(json)
@@ -63,7 +64,8 @@ const Post = ({ content, user_id, owned }) => {
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
-        }
+        },
+        credentials: "include"
       }).then((res) => res.json())
       .then((json) => {
         const valid = checkCallback(json)
@@ -93,7 +95,8 @@ const Post = ({ content, user_id, owned }) => {
           }),
           headers: {
             "Content-type": "application/json; charset=UTF-8"
-          }
+          },
+          credentials: "include"
         }).then((res) => res.json())
         .then((json) => {
           const valid = checkCallback(json)

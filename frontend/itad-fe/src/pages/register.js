@@ -30,7 +30,7 @@ const Register = () => {
               headers: {
                   "Content-type": "application/json",
               },
-              type: "cors"
+              credentials: "include"
             }).then((response) => {
               return response.json()
             })
@@ -77,7 +77,8 @@ const Register = () => {
   async function registerStepOne(){
     try{
       await fetch(('https://one-take-a-day-backend.onrender.com/auth/register/' + email), {
-        method: "GET"
+        method: "GET",
+        credentials: "include"
       }).then((res) => res.json())
       .then((json) => {
         if(json.message === 'failure')
@@ -115,7 +116,8 @@ const Register = () => {
         }),
         headers: {
           "Content-type": "application/json",
-        }
+        },
+        credentials: "include"
       }).then((res) => res.json())
       .then((json) => {
         if (json.message === "username already in use"){

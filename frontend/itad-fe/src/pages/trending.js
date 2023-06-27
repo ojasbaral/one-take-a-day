@@ -36,7 +36,9 @@ const Trending = () => {
                 navigate('/login')
             }
 
-            await fetch('https://one-take-a-day-backend.onrender.com/trending/' + id)
+            await fetch('https://one-take-a-day-backend.onrender.com/trending/' + id, {
+                credentials: "include"
+            })
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)

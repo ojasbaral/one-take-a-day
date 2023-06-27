@@ -39,7 +39,9 @@ const Account = () => {
                 navigate('/login')
             }
 
-            await fetch('https://one-take-a-day-backend.onrender.com/account/' + id +'/' + view_id)
+            await fetch('https://one-take-a-day-backend.onrender.com/account/' + id +'/' + view_id, {
+                credentials: "include"
+            })
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)
@@ -80,7 +82,8 @@ const Account = () => {
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
-                }
+                },
+                credentials: "include"
             }).then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)
@@ -110,7 +113,8 @@ const Account = () => {
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
-                }
+                },
+                credentials: "include"
             }).then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)

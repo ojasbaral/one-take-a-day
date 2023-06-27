@@ -51,7 +51,9 @@ const Feed = () => {
       if (refresh){
         navigate('/login')
       }
-      await fetch(('https://one-take-a-day-backend.onrender.com/post/' + id + '/' + page.toString()))
+      await fetch(('https://one-take-a-day-backend.onrender.com/post/' + id + '/' + page.toString()), {
+        credentials: "include"
+      })
       .then((res) => res.json())
       .then((json) => {
           const valid = checkCallback(json)
@@ -126,7 +128,8 @@ async function delPost(){
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
-        }
+        },
+        credentials: "include"
       }).then((res) => res.json())
       .then((json) => {
         const valid = checkCallback(json)
@@ -158,7 +161,8 @@ async function addPost(){
           }),
           headers: {
               "Content-type": "application/json; charset=UTF-8"
-          }
+          },
+          credentials: "include"
       }).then((res) => res.json())
       .then((json) => {
         if(json.message === "already posted"){
@@ -194,7 +198,8 @@ async function addPost(){
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
-        }
+        },
+        credentials: "include"
       }).then((res) => res.json())
       .then((json) => {
         const valid = checkCallback(json)
@@ -227,7 +232,8 @@ async function addPost(){
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
-        }
+        },
+        credentials: "include"
       }).then((res) => res.json())
       .then((json) => {
         const valid = checkCallback(json)

@@ -44,7 +44,9 @@ const PostPage = () => {
             if (refresh){
                 navigate('/login')
             }
-            await fetch(('https://one-take-a-day-backend.onrender.com/comment/' + id + '/' + user_id))
+            await fetch(('https://one-take-a-day-backend.onrender.com/comment/' + id + '/' + user_id), {
+              credentials: "include"
+            })
             .then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)
@@ -96,7 +98,8 @@ const PostPage = () => {
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8"
-            }
+            },
+            credentials: "include"
           }).then((res) => res.json())
           .then((json) => {
             const valid = checkCallback(json)
@@ -129,7 +132,8 @@ const PostPage = () => {
             }),
             headers: {
               "Content-type": "application/json; charset=UTF-8"
-            }
+            },
+            credentials: "include"
           }).then((res) => res.json())
           .then((json) => {
             const valid = checkCallback(json)
@@ -159,7 +163,8 @@ const PostPage = () => {
               }),
               headers: {
                 "Content-type": "application/json; charset=UTF-8"
-              }
+              },
+              credentials: "include"
             }).then((res) => res.json())
             .then((json) => {
               const valid = checkCallback(json)
@@ -203,7 +208,8 @@ const PostPage = () => {
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
-                }
+                },
+                credentials: "include"
             }).then((res) => res.json())
             .then((json) => {
                 const valid = checkCallback(json)

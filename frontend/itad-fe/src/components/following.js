@@ -22,7 +22,8 @@ const Following = ({ user }) => {
                 }),
                 headers: {      
                     "Content-type": "application/json; charset=UTF-8"
-                  }
+                  },
+                  credentials: "include"
             })
             .then((res) => res.json())
             .then((json) => {

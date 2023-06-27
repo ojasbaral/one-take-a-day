@@ -8,7 +8,8 @@ export async function refreshUserToken(user_id){
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
-            }
+            },
+            credentials: "include"
         }).then((response) => response.json())
         .then((json) => {
             if (json.message === "success"){

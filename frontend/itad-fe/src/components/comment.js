@@ -30,7 +30,8 @@ const Comment = ({ comment, user_id }) => {
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8"
-                }
+                },
+                credentials: "include"
             }).then((res) => res.json())
             .then((json) => {
                 console.log(json)
