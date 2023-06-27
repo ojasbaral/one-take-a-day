@@ -30,6 +30,7 @@ const Register = () => {
               headers: {
                   "Content-type": "application/json",
               },
+              type: "cors"
             }).then((response) => {
               return response.json()
             })
@@ -113,8 +114,9 @@ const Register = () => {
           bio: bio
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        type: "cors"
       }).then((res) => res.json())
       .then((json) => {
         if (json.message === "username already in use"){
