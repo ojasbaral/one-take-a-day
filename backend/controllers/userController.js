@@ -79,6 +79,7 @@ const registerStepOne = async (req, res) => {
 
 const registerStepTwo = async (req, res) => {
     try {
+        console.log("registerStepTwo")
         const email = req.body.email
         const password = req.body.password
         const username = req.body.username
@@ -88,12 +89,10 @@ const registerStepTwo = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, parseInt(saltRounds))
 
         const test_user = await pool.query("SELECT * FROM account WHERE username=$1", [username.toLowerCase()])
-        console.log(test_user)
         if(test_user.rowCount !== 0){
             return res.send({ message: "username already in use"})
         }
         const user = await pool.query("INSERT INTO account (email, password, username, display_name, bio) VALUES ($1, $2, $3, $4, $5) RETURNING *", [email.toLowerCase(), hashedPassword, username.toLowerCase(), displayName, bio])
-        console.log(user)
         genJwt(user, res)
 
         return res.send({ message: "success", id: user.rows[0].user_id })
