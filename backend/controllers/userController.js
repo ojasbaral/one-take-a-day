@@ -97,6 +97,7 @@ const registerStepTwo = async (req, res) => {
 
         return res.send({ message: "success", id: user.rows[0].user_id })
     } catch (e) {
+        console.log("error", e)
         return res.send(e)
     }
 }

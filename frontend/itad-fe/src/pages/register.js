@@ -114,9 +114,8 @@ const Register = () => {
           bio: bio
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-        type: "cors"
+          "Content-type": "application/json",
+        }
       }).then((res) => res.json())
       .then((json) => {
         if (json.message === "username already in use"){
