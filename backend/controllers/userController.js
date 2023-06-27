@@ -107,7 +107,6 @@ const login = async (req, res) => {
             const verified = await bcrypt.compare(password, user.rows[0].password)
             if(verified){
                 genJwt(user, res)
-                console.log(user)
                 return res.send({ message: "success", id: user.rows[0].user_id})
             }
         }
