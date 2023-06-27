@@ -2,8 +2,6 @@ const pool = require('../db')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
-require('dotenv').config()
-
 const saltRounds = process.env.BCRYPT_SALT
 const jwtAccessPass = process.env.JWT_ACCESS_PASS
 const jwtRefreshPass = process.env.JWT_REFRESH_PASS
@@ -79,7 +77,6 @@ const registerStepOne = async (req, res) => {
 
 const registerStepTwo = async (req, res) => {
     try {
-        console.log("registerStepTwo")
         const email = req.body.email
         const password = req.body.password
         const username = req.body.username
@@ -97,7 +94,6 @@ const registerStepTwo = async (req, res) => {
 
         return res.send({ message: "success", id: user.rows[0].user_id })
     } catch (e) {
-        console.log("error", e)
         return res.send(e)
     }
 }
