@@ -68,10 +68,11 @@ const Login = () => {
           password: password
         }),
         headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json"
         }
       }).then((res) => res.json())
       .then((json) => {
+        console.log(json)
         if(json.message === "unauthorized"){
           setErrorMsg('Username or Password is incorrect')
           setPassword('')
