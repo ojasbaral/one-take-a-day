@@ -127,7 +127,7 @@ async function delPost(){
           post_id: currentPost.post_id
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json"
         },
         credentials: "include"
       }).then((res) => res.json())
@@ -160,7 +160,7 @@ async function addPost(){
             hashtags: hashtags
           }),
           headers: {
-              "Content-type": "application/json; charset=UTF-8"
+              "Content-type": "application/json"
           },
           credentials: "include"
       }).then((res) => res.json())
@@ -197,7 +197,7 @@ async function addPost(){
           user_id: id
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json"
         },
         credentials: "include"
       }).then((res) => res.json())
@@ -231,7 +231,7 @@ async function addPost(){
           user_id: id
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json"
         },
         credentials: "include"
       }).then((res) => res.json())

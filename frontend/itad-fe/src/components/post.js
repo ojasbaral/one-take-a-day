@@ -29,7 +29,7 @@ const Post = ({ content, user_id, owned }) => {
           user_id: user_id
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json"
         },
         credentials: "include"
       }).then((res) => res.json())
@@ -63,7 +63,7 @@ const Post = ({ content, user_id, owned }) => {
           user_id: user_id
         }),
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json"
         },
         credentials: "include"
       }).then((res) => res.json())
@@ -94,7 +94,7 @@ const Post = ({ content, user_id, owned }) => {
             post_id: content.post_id
           }),
           headers: {
-            "Content-type": "application/json; charset=UTF-8"
+            "Content-type": "application/json"
           },
           credentials: "include"
         }).then((res) => res.json())

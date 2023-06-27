@@ -70,7 +70,7 @@ const Settings = () => {
                     displayName: displayName
                 }),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json"
                 },
                 credentials: "include"
             })
@@ -102,7 +102,7 @@ const Settings = () => {
                     bio: bio
                 }),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json"
                 },
                 credentials: "include"
             })

@@ -97,7 +97,7 @@ const PostPage = () => {
               user_id: user_id
             }),
             headers: {
-              "Content-type": "application/json; charset=UTF-8"
+              "Content-type": "application/json"
             },
             credentials: "include"
           }).then((res) => res.json())
@@ -131,7 +131,7 @@ const PostPage = () => {
               user_id: user_id
             }),
             headers: {
-              "Content-type": "application/json; charset=UTF-8"
+              "Content-type": "application/json"
             },
             credentials: "include"
           }).then((res) => res.json())
@@ -162,7 +162,7 @@ const PostPage = () => {
                 post_id: id
               }),
               headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json"
               },
               credentials: "include"
             }).then((res) => res.json())
@@ -207,7 +207,7 @@ const PostPage = () => {
                     comment: comment
                 }),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json"
                 },
                 credentials: "include"
             }).then((res) => res.json())
