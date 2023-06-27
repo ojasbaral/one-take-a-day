@@ -16,14 +16,14 @@ function genJwt(user, res){
         httpOnly: true,
         maxAge: (15 * 60 * 1000),
         sameSite: 'None',
-        secure: state
+        secure: true
     })
 
     res.cookie("refresh_token", refreshToken, {
         httpOnly: true,
         maxAge: (7 * 24 * 60 * 60 * 1000),
         sameSite: 'None',
-        secure: state,
+        secure: true,
         path: '/auth'
     })
 }
@@ -104,6 +104,7 @@ const login = async (req, res) => {
         const user = await pool.query("SELECT * FROM account WHERE username=$1", [username.toLowerCase()])
         if(user.rowCount !== 0){
             const verified = await bcrypt.compare(password, user.rows[0].password)
+            console.log(verified)
             if(verified){
                 genJwt(user, res)
                 console.log(user)
@@ -134,7 +135,7 @@ const refresh = (req, res) => {
                     httpOnly: true,
                     maxAge: (5 * 60 * 1000),
                     sameSite: 'None',
-                    secure: state
+                    secure: true
                 })
 
                 return res.send({ message: 'success'})
@@ -151,14 +152,14 @@ const logout = (req, res) => {
         httpOnly: true,
         maxAge: (7 * 24 * 60 * 60 * 1000),
         sameSite: 'None',
-        secure: state,
+        secure: true,
         path: '/auth'
     })
     res.clearCookie('access_token', {
                     httpOnly: true,
                     maxAge: (15 * 60 * 1000),
                     sameSite: 'None',
-                    secure: state
+                    secure: true
                 })
     res.send({ message: 'cookies cleared'})
 }
