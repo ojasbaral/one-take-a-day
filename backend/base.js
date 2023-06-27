@@ -6,7 +6,10 @@ const auth = require('./routes/auth')
 const home = require('./routes/home')
 const cors = require('cors')
 
-app.use(cors())
+app.use(cors({
+    origin: "https://one-take-a-day-backend.onrender.com",
+    credentials: true
+}))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
