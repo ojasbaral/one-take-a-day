@@ -18,6 +18,7 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
           }
         }).then((res) => res.json)
         .then((json) => {
+            console.log(json)
             if (json.message === 'cookies cleared'){
                 return navigate('/')
             }

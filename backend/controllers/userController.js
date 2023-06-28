@@ -146,6 +146,7 @@ const refresh = (req, res) => {
 }
 
 const logout = (req, res) => {
+    try{
     res.clearCookie('refresh_token', {
         httpOnly: true,
         maxAge: (7 * 24 * 60 * 60 * 1000),
@@ -160,6 +161,9 @@ const logout = (req, res) => {
                     secure: true
                 })
     res.send({ message: 'cookies cleared'})
+        }catch(e){
+            res.send(e)
+        }
 }
 
 module.exports = { registerStepOne, registerStepTwo, refresh, checkLoginAuth, login, logout, checkLogoutAuth }
