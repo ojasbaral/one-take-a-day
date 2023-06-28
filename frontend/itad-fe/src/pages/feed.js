@@ -108,9 +108,6 @@ const Feed = () => {
       setNewPost('')
     }else{
     addPost()
-    getPosts()
-    setNewPost('')
-    setHashtags([])
     }
   }
 
@@ -176,6 +173,8 @@ async function addPost(){
           if(valid === 0){
             setPosted(true)
             getPosts()
+            setNewPost('')
+            setHashtags([])
           }else if(valid === 1){
               navigate('/login')
           }

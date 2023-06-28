@@ -11,7 +11,9 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
     }
 
     async function handleLogout(){
-        await fetch('/auth/logout').then().then()
+        await fetch('/auth/logout', {
+            credentials: "include"
+        }).then().then()
         return navigate('/')
     }
 
