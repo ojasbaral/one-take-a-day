@@ -108,7 +108,7 @@ const Feed = () => {
       setNewPost('')
     }else{
     addPost()
-    window.location.reload(false)
+    //window.location.reload(false)
     setNewPost('')
     setHashtags([])
     }
@@ -150,6 +150,8 @@ async function addPost(){
       if (refresh){
         navigate('/login')
       }
+
+      console.log("test")
 
 
       await fetch('https://one-take-a-day-backend.onrender.com/post', {
