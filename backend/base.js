@@ -13,6 +13,10 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
+app.use((req, res, next) => {
+    console.log(req)
+    next()
+})
 app.use('/auth', auth)
 app.use('/', home)
 
