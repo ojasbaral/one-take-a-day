@@ -12,9 +12,16 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
 
     async function handleLogout(){
         await fetch('/auth/logout', {
-            credentials: "include"
-        }).then().then()
-        return navigate('/')
+            credentials: "include",
+            headers: {
+              "Content-type": "application/json"
+          }
+        }).then((res) => res.json)
+        .then((json) => {
+            if (json.message === 'cookies cleared'){
+                return navigate('/')
+            }
+        })
     }
 
     function handleAccount(){
