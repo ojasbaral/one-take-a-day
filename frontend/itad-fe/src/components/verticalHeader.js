@@ -11,7 +11,7 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
     }
 
     async function handleLogout(){
-        await fetch('/auth/logout', {
+        await fetch('https://one-take-a-day-backend.onrender.com/auth/logout', {
             credentials: "include",
             headers: {
               "Content-type": "application/json"
@@ -19,7 +19,6 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
         })
         .then((res) => res.json())
         .then((json) => {
-            console.log(json)
             if (json.message === 'cookies cleared'){
                 return navigate('/')
             }

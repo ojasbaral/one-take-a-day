@@ -56,6 +56,7 @@ const Feed = () => {
       })
       .then((res) => res.json())
       .then((json) => {
+        console.log(json)
           const valid = checkCallback(json)
           if(valid === 0){
               if ((json.content === []) && (page === 1)){
