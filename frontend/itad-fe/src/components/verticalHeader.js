@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from '../assets/logo.png'
 import { useNavigate } from 'react-router-dom'
 
-const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, trending_id, hashtag_id, settings_id }) => {
+const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, trending_id, hashtag_id, settings_id, post_id }) => {
     const navigate = useNavigate()
 
     function handleLogo(){
@@ -16,7 +16,7 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
     }
 
     function handleAccount(){
-        if(user_id === 0 || friend_id === 0 || search_id === 0 || trending_id === 0 || hashtag_id === 0 || settings_id == 0){
+        if(user_id === 0 || friend_id === 0 || search_id === 0 || trending_id === 0 || hashtag_id === 0 || settings_id == 0 || post_id === 0){
             navigate('/account/' + view_id + '/' + view_id)
             window.location.reload(false)
         }
