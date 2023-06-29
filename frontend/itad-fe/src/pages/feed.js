@@ -172,10 +172,7 @@ async function addPost(){
           const valid = checkCallback(json)
 
           if(valid === 0){
-            setPosted(true)
-            getPosts()
-            setNewPost('')
-            setHashtags([])
+            window.location.reload(false)
           }else if(valid === 1){
               navigate('/login')
           }
