@@ -56,6 +56,7 @@ const Feed = () => {
       })
       .then((res) => res.json())
       .then((json) => {
+        console.log(json)
           const valid = checkCallback(json)
           if(valid === 0){
               if ((json.content === []) && (page === 1)){
@@ -108,9 +109,6 @@ const Feed = () => {
       setNewPost('')
     }else{
     addPost()
-    window.location.reload(false)
-    setNewPost('')
-    setHashtags([])
     }
   }
 
@@ -151,6 +149,8 @@ async function addPost(){
         navigate('/login')
       }
 
+      console.log("test")
+
 
       await fetch('https://one-take-a-day-backend.onrender.com/post', {
           method: "POST",
@@ -172,7 +172,7 @@ async function addPost(){
           const valid = checkCallback(json)
 
           if(valid === 0){
-            setPosted(true)
+            window.location.reload(false)
           }else if(valid === 1){
               navigate('/login')
           }
