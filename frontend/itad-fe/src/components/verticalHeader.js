@@ -11,7 +11,7 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
     }
 
     async function handleLogout(){
-        await fetch('http://api.onetakeaday.com/auth/logout', {
+        await fetch('https://api.onetakeaday.com/auth/logout', {
             credentials: "include",
             headers: {
               "Content-type": "application/json"

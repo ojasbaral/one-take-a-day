@@ -36,7 +36,7 @@ const Trending = () => {
                 navigate('/login')
             }
 
-            await fetch('http://api.onetakeaday.com/trending/' + id, {
+            await fetch('https://api.onetakeaday.com/trending/' + id, {
                 credentials: "include"
             })
             .then((res) => res.json())
