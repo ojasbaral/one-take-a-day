@@ -36,7 +36,7 @@ const Trending = () => {
                 navigate('/login')
             }
 
-            await fetch('https://one-take-a-day-backend.onrender.com/trending/' + id, {
+            await fetch('https://api.onetakeaday.com/trending/' + id, {
                 credentials: "include"
             })
             .then((res) => res.json())

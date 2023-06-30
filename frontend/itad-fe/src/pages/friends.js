@@ -36,7 +36,7 @@ const Friends = () => {
                 navigate('/login')
             }
 
-            await fetch('https://one-take-a-day-backend.onrender.com/friend/' + id, {
+            await fetch('https://api.onetakeaday.com/friend/' + id, {
                 credentials: "include"
             })
             .then((res) => res.json())

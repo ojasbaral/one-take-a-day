@@ -44,7 +44,7 @@ const PostPage = () => {
             if (refresh){
                 navigate('/login')
             }
-            await fetch(('https://one-take-a-day-backend.onrender.com/comment/' + id + '/' + user_id), {
+            await fetch(('https://api.onetakeaday.com/comment/' + id + '/' + user_id), {
               credentials: "include"
             })
             .then((res) => res.json())
@@ -90,7 +90,7 @@ const PostPage = () => {
             navigate('/login')
           }
     
-          await fetch("https://one-take-a-day-backend.onrender.com/like", {
+          await fetch("https://api.onetakeaday.com/like", {
             method: "DELETE",
             body: JSON.stringify({
               post_id: id,
@@ -124,7 +124,7 @@ const PostPage = () => {
             navigate('/login')
           }
     
-          await fetch('https://one-take-a-day-backend.onrender.com/like', {
+          await fetch('https://api.onetakeaday.com/like', {
             method: "POST",
             body: JSON.stringify({
               post_id: id,
@@ -156,7 +156,7 @@ const PostPage = () => {
               navigate('/login')
             }
       
-            await fetch('https://one-take-a-day-backend.onrender.com/post', {
+            await fetch('https://api.onetakeaday.com/post', {
               method: "DELETE",
               body: JSON.stringify({
                 post_id: id
@@ -199,7 +199,7 @@ const PostPage = () => {
                 navigate('/login')
             }
 
-            await fetch('https://one-take-a-day-backend.onrender.com/comment', {
+            await fetch('https://api.onetakeaday.com/comment', {
                 method: "POST",
                 body: JSON.stringify({
                     post_id: id,
