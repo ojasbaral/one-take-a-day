@@ -39,7 +39,7 @@ const Account = () => {
                 navigate('/login')
             }
 
-            await fetch('https://api.onetakeaday.com/account/' + id +'/' + view_id, {
+            await fetch('http://api.onetakeaday.com/account/' + id +'/' + view_id, {
                 credentials: "include"
             })
             .then((res) => res.json())
@@ -74,7 +74,7 @@ const Account = () => {
                 navigate('/login')
             }
 
-            await fetch('https://api.onetakeaday.com/friend', {
+            await fetch('http://api.onetakeaday.com/friend', {
                 method: "POST",
                 body: JSON.stringify({
                     follower: view_id,
@@ -105,7 +105,7 @@ const Account = () => {
                 navigate('/login')
             }
             
-            await fetch('https://api.onetakeaday.com/friend', {
+            await fetch('http://api.onetakeaday.com/friend', {
                 method: "DELETE",
                 body: JSON.stringify({
                     follower: view_id,

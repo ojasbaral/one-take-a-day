@@ -21,7 +21,7 @@ const Comment = ({ comment, user_id }) => {
                 navigate('/login')
             }
 
-            await fetch('https://api.onetakeaday.com/comment', {
+            await fetch('http://api.onetakeaday.com/comment', {
                 method: "DELETE", 
                 body: JSON.stringify({
                     post_id: comment.post_id,
