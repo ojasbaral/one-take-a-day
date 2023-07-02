@@ -31,17 +31,17 @@ const Feed = () => {
   const navigate = useNavigate()
 
   useEffect(()=> {
-    async function effect(){
+    /* async function effect(){
       formatDate(new Date())
       const valid = await refreshUserToken(id)
       setLogin(valid)
       getPosts()
       return () => {}
     }
-    effect()
+    effect() */
 
-    /* setPosts([])
-    setCurrentPost({}) */
+    setPosts([])
+    setCurrentPost({})
   }, [])
 
   if (login){
