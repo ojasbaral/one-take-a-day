@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {AiOutlineDelete} from "react-icons/ai"
 import { refreshUserToken, checkCallback} from '../utilities/helper'
 
+
 const Comment = ({ comment, user_id }) => {
     const [owned, setOwned] = useState(false)
     const navigate = useNavigate()
@@ -21,7 +22,7 @@ const Comment = ({ comment, user_id }) => {
                 navigate('/login')
             }
 
-            await fetch('https://api.onetakeaday.com/comment', {
+            await fetch('https://onetakeaday.com' + '/comment', {
                 method: "DELETE", 
                 body: JSON.stringify({
                     post_id: comment.post_id,

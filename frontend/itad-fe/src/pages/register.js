@@ -21,7 +21,7 @@ const Register = () => {
   useEffect(() => {
     const result = async () => {
         try{
-          await fetch('https://api.onetakeaday.com/auth/login', {
+          await fetch('https://onetakeaday.com' + '/auth/login', {
               method: "POST",
               body: JSON.stringify({
                   username: username,
@@ -76,7 +76,7 @@ const Register = () => {
 
   async function registerStepOne(){
     try{
-      await fetch(('https://api.onetakeaday.com/auth/register/' + email), {
+      await fetch(('https://onetakeaday.com' + '/auth/register/' + email), {
         method: "GET",
         credentials: "include"
       }).then((res) => res.json())
@@ -105,7 +105,7 @@ const Register = () => {
 
   async function registerStepTwo(){
     try{
-      await fetch('https://api.onetakeaday.com/auth/register', {
+      await fetch('https://onetakeaday.com' + '/auth/register', {
         method: "POST",
         body: JSON.stringify({
           email: email,

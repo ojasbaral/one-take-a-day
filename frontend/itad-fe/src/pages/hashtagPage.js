@@ -35,7 +35,7 @@ const HashtagPage = () => {
                 navigate('/login')
             }
 
-            await fetch('https://api.onetakeaday.com/hashtag/' + hashtag_id + '/' + id, {
+            await fetch('https://onetakeaday.com' + '/hashtag/' + hashtag_id + '/' + id, {
                 credentials: "include"
             })
             .then((res) => res.json())

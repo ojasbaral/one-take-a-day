@@ -34,7 +34,7 @@ const Settings = () => {
                 navigate('/login')
             }
 
-            await fetch('https://api.onetakeaday.com/settings/' + id, {
+            await fetch('https://onetakeaday.com' + '/settings/' + id, {
                 credentials: "include"
             })
             .then((res) => res.json())
@@ -63,7 +63,7 @@ const Settings = () => {
                 navigate('/login')
             }
 
-            await fetch('https://api.onetakeaday.com/settings/display', {
+            await fetch('https://onetakeaday.com' + '/settings/display', {
                 method: "PUT",
                 body: JSON.stringify({
                     id: id,
@@ -95,7 +95,7 @@ const Settings = () => {
                 navigate('/login')
             }
 
-            await fetch('https://api.onetakeaday.com/settings/bio', {
+            await fetch('https://onetakeaday.com' + '/settings/bio', {
                 method: "PUT",
                 body: JSON.stringify({
                     id: id,
