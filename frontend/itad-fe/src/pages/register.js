@@ -44,6 +44,8 @@ const Register = () => {
               //console.log(json)
               return () => {}
           })
+
+          /* setLoading(false) */
     } catch (e) {
         //console.log(e)
         return navigate('/error')
@@ -145,7 +147,8 @@ const Register = () => {
         <div>
           <Header list={['LOGIN', 'ABOUT']}></Header>
         </div>
-        <div className="mt-20 ml-32 w-auto absolute">
+        <div className="flex justify-center mt-16 ml-4 mr-4">
+        <div className="block justify-center w-auto">
           <h1 className="text-5xl">Create your account</h1>
           <div>
           <p className="mt-5 text-gray-700">Already have one? <Link to="/login" className="text-blue-700 underline">Login</Link></p>
@@ -170,6 +173,7 @@ const Register = () => {
           
         </div>
         </div>
+        </div>
       </div>
     )
   }else{
@@ -178,7 +182,8 @@ const Register = () => {
         <div>
           <Header list={['LOGIN', 'ABOUT']}></Header>
         </div>
-        <div className="mt-20 ml-32 w-auto absolute">
+        <div className="flex justify-center mt-16 ml-4 mr-4">
+        <div className="block justify-center w-auto">
           <h1 className="text-5xl">Create your account</h1>
           <div>
           <p className="mt-5 text-gray-700">Already have one? <Link to="/login" className="text-blue-700 underline">Login</Link></p>
@@ -202,7 +207,7 @@ const Register = () => {
             </div>
             <button className="mt-5 bg-black text-white w-full h-11 rounded text-xl" onClick={handleCompleteBtn}>Complete</button>
           </div>
-          
+          </div>
         </div>
         </div>
       </div>

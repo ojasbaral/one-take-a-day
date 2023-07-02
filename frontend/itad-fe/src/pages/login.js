@@ -39,6 +39,8 @@ const Login = () => {
               //console.log(json)
               return () => {}
           })
+
+          /* setLoading(false) */
     } catch (e) {
       return navigate('/error')
     }
@@ -95,29 +97,31 @@ const Login = () => {
     </div>
   }
    return (
-      <div>
+      <div className="">
         <div>
           <Header list={['REGISTER', 'ABOUT']}></Header>
         </div>
-        <div className="mt-32 ml-32 w-auto absolute">
+        <div className="flex justify-center mt-16 ml-4 mr-4">
+        <div className="block justify-center w-auto">
           <h1 className="text-5xl">Login to account</h1>
-          <div>
+          <div className="">
           <p className="mt-5 text-gray-700">Don't have one? <Link to="/register" className="text-blue-700 underline">Register</Link></p>
           <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
           <div className="mt-3">
             <div>
               <label className="block">Username</label>
-              <input type="text" className="w-full border-0 border-b border-black h-8 focus:ring-0" key="email" placeholder="Enter Username" value={username} onChange={(e) => setUsername(e.target.value)} onKeyPress={(e) => (e.key === 'Enter')?handleLogin(e):''}></input>
+              <input type="text" className="w-96 border-0 border-b border-black h-8 focus:ring-0" key="email" placeholder="Enter Username" value={username} onChange={(e) => setUsername(e.target.value)} onKeyPress={(e) => (e.key === 'Enter')?handleLogin(e):''}></input>
             </div>
             <div className="mt-3">
               <label className="block">Password</label>
-              <input type="password" className="w-full border-0 border-b border-black h-8 focus:ring-0" key="pass1" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={(e) => (e.key === 'Enter')?handleLogin(e):''}></input>
+              <input type="password" className="w-96 border-0 border-b border-black h-8 focus:ring-0" key="pass1" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyPress={(e) => (e.key === 'Enter')?handleLogin(e):''}></input>
             </div>
-            <button className="mt-5 bg-black text-white w-full h-11 rounded text-xl" onClick={handleLogin}>Login</button>
+            <button className="mt-5 bg-black text-white w-96 h-11 rounded text-xl" onClick={handleLogin}>Login</button>
           </div>
           
         </div>
         </div>
+      </div>
       </div>
     )
 }
