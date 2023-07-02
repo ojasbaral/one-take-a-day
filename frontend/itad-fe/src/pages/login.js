@@ -17,7 +17,7 @@ const Login = () => {
     const result = async () => {
       //await fetch('/auth/logout').then().then()
         try{
-          await fetch('https://onetakeaday.com' + '/auth/login', {
+          await fetch('https://api.onetakeaday.com' + '/auth/login', {
               method: "POST",
               body: JSON.stringify({
                   username: username,
@@ -62,7 +62,7 @@ const Login = () => {
 
   async function login(){
     try{
-      await fetch(('https://onetakeaday.com' + '/auth/login'), {
+      await fetch(('https://api.onetakeaday.com' + '/auth/login'), {
         method: "POST",
         body: JSON.stringify({
           username: username,

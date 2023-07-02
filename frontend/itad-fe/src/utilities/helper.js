@@ -1,7 +1,7 @@
 export async function refreshUserToken(user_id){
     try{
         var result = true
-        await fetch('https://onetakeaday.com' + '/auth/refresh', {
+        await fetch('https://api.onetakeaday.com' + '/auth/refresh', {
             method: "POST",
             body: JSON.stringify({
                 user_id: user_id

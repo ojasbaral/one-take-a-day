@@ -38,7 +38,7 @@ const Search = () => {
             if (refresh){
                 navigate('/login')
             }
-            await fetch('https://onetakeaday.com' + '/search/' + search, {
+            await fetch('https://api.onetakeaday.com' + '/search/' + search, {
                 credentials: "include"
             })
             .then((res) => res.json())
@@ -62,7 +62,7 @@ const Search = () => {
             if (refresh){
                 navigate('/login')
             }
-            await fetch('https://onetakeaday.com' + '/search/hashtag/' + search, {
+            await fetch('https://api.onetakeaday.com' + '/search/hashtag/' + search, {
                 credentials: "include"
             })
             .then((res) => res.json())

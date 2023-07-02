@@ -51,7 +51,7 @@ const Feed = () => {
       if (refresh){
         navigate('/login')
       }
-      await fetch(('https://onetakeaday.com' + '/post/' + id + '/' + page.toString()), {
+      await fetch(('https://api.onetakeaday.com' + '/post/' + id + '/' + page.toString()), {
         credentials: "include"
       })
       .then((res) => res.json())
@@ -119,7 +119,7 @@ async function delPost(){
         navigate('/login')
       }
 
-      await fetch('https://onetakeaday.com' + '/post', {
+      await fetch('https://api.onetakeaday.com' + '/post', {
         method: "DELETE",
         body: JSON.stringify({
           post_id: currentPost.post_id
@@ -152,7 +152,7 @@ async function addPost(){
       console.log("test")
 
 
-      await fetch('https://onetakeaday.com' + '/post', {
+      await fetch('https://api.onetakeaday.com' + '/post', {
           method: "POST",
           body: JSON.stringify({
             content: newPost,
@@ -190,7 +190,7 @@ async function addPost(){
         navigate('/login')
       }
 
-      await fetch('https://onetakeaday.com' + "/like", {
+      await fetch('https://api.onetakeaday.com' + "/like", {
         method: "DELETE",
         body: JSON.stringify({
           post_id: currentPost.post_id,
@@ -224,7 +224,7 @@ async function addPost(){
         navigate('/login')
       }
 
-      await fetch('https://onetakeaday.com' + '/like', {
+      await fetch('https://api.onetakeaday.com' + '/like', {
         method: "POST",
         body: JSON.stringify({
           post_id: currentPost.post_id,
