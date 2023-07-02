@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 
 const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, trending_id, hashtag_id, settings_id, post_id }) => {
     const navigate = useNavigate()
-    const [collapsed, setCollapsed] = useState(true)
 
     function handleLogo(){
         if (user_id !== 0)
@@ -55,20 +54,11 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
         }
     }
 
-    if(collapsed){
-        return (
-            <div className="vertical-center inline-block mr-0">
-                <a onClick={() => setCollapsed(false)}>&#9776;</a>
-            </div>
-        )
-    }
-
     return (
         <div className="vertical-center inline-block mr-0">
-            <div className="flex justify-between">
+            
             <img className="h-14 mt-3 ml-3 cursor-pointer" src={Logo} onClick={handleLogo}></img>
-            <a onClick={setCollapsed(true)}>&times;</a>
-            </div>
+            
             <div className="text-2xl mt-16 inline-block mr-0 max-w-0">
                 <h3 className="ml-5 mt-12 cursor-pointer hover:text-3xl hover:mr-0" onClick={handleLogo}>HOME</h3>
                 <h3 className="ml-5 mt-12 cursor-pointer hover:text-3xl hover:mr-0" onClick={handleTrending}>TRENDING</h3>
