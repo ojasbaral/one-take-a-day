@@ -72,7 +72,7 @@ const Friends = () => {
     <div className="flex justify-between">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
         <VerticalHeader user_id={id} settings_id={id} trending_id={id} account_id={id} view_id={id} friend_id={0}></VerticalHeader>
-        <div className="mr-20 mt-4 text-3xl w-full ml-20">
+        <div className="mr-20 mt-4 text-3xl w-full ml-2">
             <div className="flex items-center"><input onKeyPress={(e) => handleKey(e)} type="text" className="w-full rounded-lg" placeholder="SEARCH FOR A USERNAME" value={search} onChange={(e) => setSearch(e.target.value.replace(" ", ""))}></input><AiOutlineSearch className="cursor-pointer ml-2" onClick={search !== ''?() => navigate('/search/' + id + '/' + search):null}></AiOutlineSearch></div>
             <div className="flex text-3xl mt-4 font-extrabold items-center text-black"><h1 onClick={following?null:() => setFollowing(true)} className={following?"mr-2":"cursor-pointer text-2xl mr-2 text-gray-600 hover:text-black"}>FOLLOWING</h1><h1 className={following?"cursor-pointer text-2xl ml-2 text-gray-600 hover:text-black":"ml-2"} onClick={following?() => setFollowing(false):null}>FOLLOWERS</h1></div>
 

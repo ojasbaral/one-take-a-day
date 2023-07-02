@@ -63,7 +63,7 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
     }
 
     return (
-        <div className="vertical-center inline-block mr-12">
+        <div className="vertical-center inline-block mr-30">
             
             
             <div>

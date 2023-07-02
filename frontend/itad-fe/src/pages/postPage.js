@@ -229,7 +229,7 @@ const PostPage = () => {
     <div className="flex justify-between ">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
         <VerticalHeader settings_id={user_id} trending_id={user_id} user_id={user_id} account_id={user_id} view_id={user_id} friend_id={user_id} post_id={user_id}></VerticalHeader>
-        <div className="mr-20 mt-4 text-3xl w-full ml-20">
+        <div className="mr-20 mt-4 text-3xl w-full ml-2">
           <h1 className="text-right mb-2">{date}</h1>
           <Error msg={errorMsg} clear={() => setErrorMsg('')}></Error>
 

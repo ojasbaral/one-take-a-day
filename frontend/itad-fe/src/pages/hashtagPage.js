@@ -78,7 +78,7 @@ const HashtagPage = () => {
     <div className="flex justify-between">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
         <VerticalHeader settings_id={id} user_id={id} account_id={id} view_id={id} friend_id={id} trending_id={id} hashtag_id={0}></VerticalHeader>
-        <div className="mr-20 mt-4 text-3xl w-full ml-20">
+        <div className="mr-20 mt-4 text-3xl w-full ml-2">
         <div className="flex items-center mb-4"><input onKeyPress={(e) => handleKey(e)} type="text" className="w-full rounded-lg" placeholder="SEARCH FOR A HASHTAG" value={search} onChange={(e) => setSearch(e.target.value.replace(" ", ""))}></input><AiOutlineSearch className="cursor-pointer ml-2" onClick={handleSearch}></AiOutlineSearch></div>
             <h1>{hashtag.toUpperCase()}</h1>
             <PostList content={posts} user_id={id}></PostList>
