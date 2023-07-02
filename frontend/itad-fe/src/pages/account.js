@@ -150,7 +150,7 @@ const Account = () => {
     }
 
   return (
-    <div className="flex justify-between mr-2">
+    <div className="flex justify-between mr-1">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
         <VerticalHeader trending_id={view_id} user_id={view_id} account_id={id} view_id={view_id} friend_id={view_id} settings_id={view_id}></VerticalHeader>
         <div className="mr-20 mt-4 text-3xl w-full ml-2">

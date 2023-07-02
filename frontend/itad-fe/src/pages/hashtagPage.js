@@ -75,7 +75,7 @@ const HashtagPage = () => {
     }
 
   return (
-    <div className="flex justify-between mr-2">
+    <div className="flex justify-between mr-1">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
         <VerticalHeader settings_id={id} user_id={id} account_id={id} view_id={id} friend_id={id} trending_id={id} hashtag_id={0}></VerticalHeader>
         <div className="mr-20 mt-4 text-3xl w-full ml-2">

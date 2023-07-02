@@ -121,7 +121,7 @@ const Settings = () => {
     }
 
   return (
-    <div className="flex justify-between mr-2">
+    <div className="flex justify-between mr-1">
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
         <VerticalHeader user_id={id} settings_id={0} trending_id={id} account_id={id} view_id={id} friend_id={id}></VerticalHeader>
         <div className="mr-20 mt-4 text-3xl w-full ml-2">
