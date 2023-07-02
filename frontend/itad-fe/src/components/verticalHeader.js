@@ -56,21 +56,21 @@ const VerticalHeader = ({ user_id, account_id, view_id, friend_id, search_id, tr
 
     if(collapsed){
         return (
-            <div className="ml-2 mt-2">
+            <div className="ml-5 mt-5 mr-5">
                 <a className="text-2xl cursor-pointer" onClick={() => setCollapsed(false)}>&#9776;</a>
             </div>
         )
     }
 
     return (
-        <div className="vertical-center inline-block mr-30">
+        <div className="vertical-center inline-block mr-32">
             
             
             <div>
             <a className="ml-5 text-6xl cursor-pointer mt-3" onClick={() => setCollapsed(true)}>&times;</a>
             </div>
             
-            <div className="text-2xl mt-16 inline-block mr-0">
+            <div className="text-2xl mt-16 inline-block mr-0 max-w-0">
                 <h3 className="ml-5 mt-12 cursor-pointer hover:text-3xl hover:mr-0" onClick={handleLogo}>HOME</h3>
                 <h3 className="ml-5 mt-12 cursor-pointer hover:text-3xl hover:mr-0" onClick={handleTrending}>TRENDING</h3>
                 <h3 className="ml-5 mt-12 cursor-pointer hover:text-3xl hover:mr-0" onClick={handleFriends}>FRIENDS</h3>

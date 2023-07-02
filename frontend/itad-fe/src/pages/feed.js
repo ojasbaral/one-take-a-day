@@ -31,17 +31,17 @@ const Feed = () => {
   const navigate = useNavigate()
 
   useEffect(()=> {
-    async function effect(){
+    /* async function effect(){
       formatDate(new Date())
       const valid = await refreshUserToken(id)
       setLogin(valid)
       getPosts()
       return () => {}
     }
-    effect()
+    effect() */
 
-    /* setPosts([])
-    setCurrentPost({}) */
+    setPosts([])
+    setCurrentPost({})
   }, [])
 
   if (login){
@@ -324,7 +324,7 @@ async function addPost(){
   }
 
   return (
-    <div className="flex justify-between ">
+    <div className="flex justify-between">
       <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
       <VerticalHeader user_id={0} settings_id={id} account_id={id} view_id={id} friend_id={id} trending_id={id}></VerticalHeader>
       <div className="mr-20 mt-4 text-3xl w-full ml-2">
