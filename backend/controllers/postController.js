@@ -41,7 +41,6 @@ const getPost = async (req,res) => {
     var test = await pool.query("SELECT p.like_count, p.comment_count, p.post_id, p.like_count, p.comment_count, p.account_id, p.posted, p.content, a.username, a.display_name FROM post p INNER JOIN account a ON a.user_id = p.account_id WHERE account_id=$1 ORDER BY posted DESC LIMIT 1", [id])
     if(test.rowCount !== 0){
         const currentDate = new Date()
-        console.log(currentDate, test.rows[0])
         if((currentDate.getFullYear() === test.rows[0].posted.getFullYear()) && (currentDate.getMonth() === test.rows[0].posted.getMonth()) && (currentDate.getDate() ===  test.rows[0].posted.getDate())){
             posted = true
             currentPost = test.rows[0]

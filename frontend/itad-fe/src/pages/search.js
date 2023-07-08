@@ -38,7 +38,7 @@ const Search = () => {
             if (refresh){
                 navigate('/login')
             }
-            await fetch('https://api.onetakeaday.com' + '/search/' + search, {
+            await fetch(('https://api.onetakeaday.com' + '/search/' + search), {
                 credentials: "include"
             })
             .then((res) => res.json())
@@ -94,6 +94,9 @@ const Search = () => {
                 window.location.reload(false)
             }
         }
+    }
+    if(resp === null){
+        return <div><Loading></Loading></div>
     }
 
   return (
