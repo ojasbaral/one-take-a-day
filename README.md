@@ -1,5 +1,7 @@
 # one-take-a-day
 
+This application is no longer hosted
+
 ## Backend
 In One Take A Day, I have chosen Node.js and Express.js as the backend technologies, which enable me to efficiently connect my React.js frontend to the PostgreSQL backend for seamless data storage and management. Using the power of Node.js, I can leverage the non-blocking, event-driven architecture to handle multiple client requests simultaneously, ensuring high performance and responsiveness. Express.js provides a robust framework for building RESTful APIs, allowing me to define endpoints that interact with the database. To implement secure authentication, I rely on bcrypt for hashing and verifying passwords, which ensures that user credentials are securely stored. JSON Web Tokens (JWT) are utilized for token-based authentication, enabling users to authenticate and access protected routes. Furthermore, cookies are employed to store session information, allowing for persistent login sessions. This combination of technologies forms a reliable and efficient backend that seamlessly connects my React.js frontend to the PostgreSQL database while implementing robust authentication mechanisms.
 
